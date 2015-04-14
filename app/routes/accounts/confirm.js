@@ -1,5 +1,6 @@
 import Ember from 'ember';
 import { raw } from 'ic-ajax';
+import ENV from "../../config/environment";
 
 export default Ember.Route.extend({
   queryParams: {
