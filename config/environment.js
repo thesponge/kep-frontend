@@ -23,31 +23,6 @@ module.exports = function(environment) {
     }
   };
 
-  ENV['simple-auth'] = {
-    authorizer: 'simple-auth-authorizer:devise',
-    crossOriginWhitelist: ['*']
-  };
-  ENV['simple-auth-devise'] = {
-    tokenAttributeName: 'token',
-    identificationAttributeName: 'email',
-    serverTokenEndpoint: ENV.APP.apiHost + '/users/sign_in'
-  };
-  ENV.contentSecurityPolicy = {
-    'default-src': "'self'",
-    'script-src': "'self' 'unsafe-eval' 'unsafe-inline' *",
-    'font-src': "'self' http://fonts.gstatic.com",
-    'connect-src': "'self' http://0.0.0.0:3000 https://api.mixpanel.com http://localhost:3000 http://localhost:35729",
-    'img-src': "'self' *",
-    'style-src': "'self' 'unsafe-inline' http://fonts.googleapis.com",
-    'media-src': "'self'",
-    'report-uri': "http://localhost:4200"
-  }
-  ENV.sassOptions = {
-    //includePaths: [
-      //'bower_components/foundation/scss'
-    //]
-  }
-
   if (environment === 'development') {
     ENV.APP.apiHost = 'http://localhost:3000';
     ENV.APP.apiNamespace = 'api/v1';
@@ -80,6 +55,31 @@ module.exports = function(environment) {
     ENV.APP.apiHost = 'http://api.kep.thesponge.eu';
     ENV.APP.apiNamespace = 'v1';
 
+  }
+
+  ENV['simple-auth'] = {
+    authorizer: 'simple-auth-authorizer:devise',
+    crossOriginWhitelist: ['*']
+  };
+  ENV['simple-auth-devise'] = {
+    tokenAttributeName: 'token',
+    identificationAttributeName: 'email',
+    serverTokenEndpoint: this.APP.apiHost + '/users/sign_in'
+  };
+  ENV.contentSecurityPolicy = {
+    'default-src': "'self'",
+    'script-src': "'self' 'unsafe-eval' 'unsafe-inline' *",
+    'font-src': "'self' http://fonts.gstatic.com",
+    'connect-src': "'self' http://0.0.0.0:3000 https://api.mixpanel.com http://localhost:3000 http://localhost:35729",
+    'img-src': "'self' *",
+    'style-src': "'self' 'unsafe-inline' http://fonts.googleapis.com",
+    'media-src': "'self'",
+    'report-uri': "http://localhost:4200"
+  }
+  ENV.sassOptions = {
+    //includePaths: [
+      //'bower_components/foundation/scss'
+    //]
   }
 
   return ENV;

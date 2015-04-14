@@ -11,7 +11,7 @@ export default Ember.Route.extend({
     var self = this;
     var req = raw({
       type: 'GET',
-      url: '/users/confirmation?confirmation_token=' + token
+      url: ENV.APP.apiNamespace + '/users/confirmation?confirmation_token=' + token
     });
     req.then(function(result){
       console.log('Response from Rails', result.response);
