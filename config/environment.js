@@ -64,7 +64,7 @@ module.exports = function(environment) {
   ENV['simple-auth-devise'] = {
     tokenAttributeName: 'token',
     identificationAttributeName: 'email',
-    serverTokenEndpoint: this.APP.apiHost + '/users/sign_in'
+    serverTokenEndpoint: ENV.APP.apiHost + '/users/sign_in'
   };
   ENV.contentSecurityPolicy = {
     'default-src': "'self'",
