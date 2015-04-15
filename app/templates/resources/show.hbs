@@ -38,13 +38,9 @@
       <li>
         <div class="panel radius callout">
           <ul>
-            {{#each type in model.resource_types}}
+            {{#each intention in model.intentions}}
               <li>
-                <span class="list-icon">
-                  {{fa-icon type.icon}}
-                </span> 
-                {{type.option}} 
-                <small> ({{type.category}})</small>
+                {{intention.intention}}
               </li>
             {{/each}}
           </ul>

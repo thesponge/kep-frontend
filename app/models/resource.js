@@ -3,14 +3,14 @@ import DS from 'ember-data';
 var attr = DS.attr;
 
 var Resource = DS.Model.extend({
-  submissionType         : 'resource',
-  user_id                : attr(),
-  title                  : attr('string'),
-  description            : attr('string'),
-  travel                 : attr('string'),
-  driver_license         : attr('string'),
-  resource_intentions    : DS.hasMany('resourceIntention', {inverse: 'resource', async: true, embedded: 'always'}),
-  resource_intention_ids : attr(),
+  submissionType : 'resource',
+  user_id        : attr(),
+  title          : attr('string'),
+  description    : attr('string'),
+  travel         : attr('string'),
+  driver_license : attr('string'),
+  intentions     : DS.hasMany('intention', {inverse : 'resource', async : true, embedded : 'always'}),
+  intention_ids  : attr(),
   resource_priority_ids  : attr(),
   description_fragment: function() {
     if(this.get('description') !== undefined) {
@@ -22,7 +22,14 @@ var Resource = DS.Model.extend({
   is_owner: function(){
     var session = container.lookup('simple-auth-session:main')
     return this.get('user_id') === session.content.id;
-  }.property()
+  }.property(),
+  intentions_select2: function() {
+    var output = [];
+    this.get('intentions').forEach(function(item){
+      output.push({id: item.get('id'), text: item.get('intention')});
+    });
+    return output;
+  }.property(),
 });
 
 //Resource.reopenClass({

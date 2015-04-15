@@ -4,34 +4,11 @@ export default Ember.Controller.extend({
   rewards_select: function() {
     return this.store.find('resource-reward');
   }.property(),
-  types_select: function() {
+  intentions_select: function() {
     var output = [];
-    var data = this.store.fetchAll('resource-type').then(function(records){
+    var data = this.store.fetchAll('intention').then(function(records){
       records.forEach(function(item){
-
-        var filter = output.filter(function(obj) {
-              return obj.text == item.get('category');
-            });
-
-        if (filter.length === 0) {
-          output.push({ 
-            text: item.get('category'),
-            children:[
-              {
-                id: item.get('id'),
-                text: item.get('option')
-              }
-            ]
-          });
-        } else {
-          var index = output.indexOf(filter[0]);
-          output[index].children.push(
-            {
-              id: item.get('id'),
-              text: item.get('option')
-            }
-          );
-        }
+        output.push({id: item.get('id'), text: item.get('intention')});
       });
     });
 
@@ -39,10 +16,16 @@ export default Ember.Controller.extend({
   }.property(),
   actions: {
     updateResource: function() {
+      var selected_intentions = this.get('resource.intentions_select2');
+      var selected_intentions_output = [];
+      selected_intentions.forEach(function(item){
+        selected_intentions_output.push(item.id);
+      });
       console.log("Title: ", this.get('resource.title'));
       this.set('resource.title', this.get('resource.title'));
       console.log("Description: ", this.get('resource.description'));
       this.set('resource.description', this.get('resource.description'));
+      this.set('resource.intention_ids', selected_intentions_output);
       //console.log("Travel: ", this.get('resource.travel'));
       //this.set('resource.travel');
       //console.log("Driving license: ", this.get('resource.driver_license'));

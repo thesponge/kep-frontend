@@ -2,6 +2,16 @@ import Ember from 'ember';
 
 export default Ember.Controller.extend({
   newResource: null,
+  intentions_select: function() {
+    var output = [];
+    var data = this.store.fetchAll('intention').then(function(records){
+      records.forEach(function(item){
+        output.push({id: item.get('id'), text: item.get('intention')});
+      });
+    });
+
+    return output;
+  }.property(),
   actions: {
     submitResource: function() {
       console.log("Title: ", this.get('newResource.title'));
