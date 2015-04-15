@@ -8,9 +8,9 @@ export default Ember.Controller.extend({
   rewards_select: function() {
     return this.store.find('assignment-reward');
   }.property(),
-  types_select: function() {
+  skills_select: function() {
     var output = [];
-    var data = this.store.fetchAll('assignment-type').then(function(records){
+    var data = this.store.fetchAll('skill').then(function(records){
       records.forEach(function(item){
 
         var filter = output.filter(function(obj) {
@@ -23,7 +23,7 @@ export default Ember.Controller.extend({
             children:[
               {
                 id: item.get('id'),
-                text: item.get('option')
+                text: item.get('name')
               }
             ]
           });
@@ -32,7 +32,7 @@ export default Ember.Controller.extend({
           output[index].children.push(
             {
               id: item.get('id'),
-              text: item.get('option')
+              text: item.get('name')
             }
           );
         }

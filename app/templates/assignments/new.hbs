@@ -17,10 +17,10 @@
   <label for='driver_license'>Driving license</label>
   <div class="row">
     <div class="small-12 columns">
-      <label>Assignment type(s)</label>
+      <label>Assignment skill(s)</label>
       {{select-2
-          content=types_select
-          value=newAssignment.assignment_type_ids
+          content=skills_select
+          value=newAssignment.assignment_skill_ids
           multiple=true
           optionValuePath="id"
           placeholder="What type of assignment is this?"

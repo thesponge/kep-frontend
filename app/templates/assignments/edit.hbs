@@ -19,10 +19,9 @@
     <div class="small-12 columns">
       <label>Assignment type(s)</label>
       {{select-2
-          content=types_select
-          value=assignment.assignment_type_ids
+          content=skills_select
+          value=assignment.skills_select2
           multiple=true
-          optionValuePath="id"
           placeholder="What type of assignment is this?"
       }}
     </div>
@@ -31,10 +30,8 @@
       {{select-2
           content=rewards_select
           placeholder="Reward?"
-          value=assignment.assignment_reward_ids
+          value=assignment.rewards_select2
           multiple=true
-          optionValuePath="id"
-          optionLabelPath="reward"
       }}
     </div>
   </div>
