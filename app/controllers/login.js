@@ -8,6 +8,18 @@ Ember.LinkView.reopen({
 export default Ember.Controller.extend(LoginControllerMixin, {
     authenticator: 'simple-auth-authenticator:devise',
     actions: {
+      testNotifications: function(){
+        this.notifications.addNotification({
+            message: 'Notification test, no autoClear.',
+            type: 'success',
+            autoClear: false
+        });
+        this.notifications.addNotification({
+            message: 'Notification test with autoClear.',
+            type: 'error',
+            autoClear: true
+        });
+      },
       authenticate: function() {
         var self = this;
         this._super().then(function() {
@@ -16,7 +28,14 @@ export default Ember.Controller.extend(LoginControllerMixin, {
               type: 'success',
               autoClear: true
           });
-        });
+        },function(){
+          self.notifications.addNotification({
+              message: 'Cannot log in!',
+              type: 'error',
+              autoClear: true
+          });
+        }
+        );
       }
     },
 }
