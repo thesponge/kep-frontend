@@ -20,11 +20,6 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
       modal.show();
     },
 
-    setupController: function(controller){
-      var intention = this.store.createRecord('intention');
-      controller.set('newIntention', intention);
-    }
-
     //addIntentions: function() {
       //this.modalFor('candy');
     //},

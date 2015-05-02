@@ -12,6 +12,8 @@ export default Ember.Controller.extend({
   model: function(params){
     return this.store.find('account', params);
   }.property(),
+  newIntention: null,
+
   updateAttribute: function(property) {
     this.set('model.account.'+property, this.get('model.account.'+property))
     this.get('model.account').save().then(function(){
@@ -42,11 +44,51 @@ export default Ember.Controller.extend({
     updateAffiliations: function() {
       this.updateAttribute('affiliation_ids');
     },
+
+    addIntentions: function(){
+      // save stuff here
+    },
+
+    showAddIntentions: function() {
+      this.modalFor('account/update/new/intentions');
+    },
+    closeAddIntentions: function() {
+      this.modalFor('account/update/intentions');
+    },
+    saveAddIntentions: function() {
+      console.log("Intention: ", this.get('newIntention'));
+      var self = this;
+      self.get('newIntention').save().then(function(){
+        self.notifications.addNotification({
+            message: 'Intention #' + self.get('newIntention').id + ' created!',
+            type: 'success',
+            autoClear: true
+        });
+        this.modalFor('account/update/intentions');
+      });
+    },
+  },
+
+  modalFor: function(template){
+    //this.controller.showModal(template);
+    var modal = this.get('modal');
+
+    // Set the properties...
+    modal.setProperties({
+      template: template,
+      //controller, 'account',
+      //defaultOutlet: 'backup-modal',
+      model: this.get('content')
+    });
+
+    modal.show();
   },
 
   intentions_select: function() {
-    return this.store.find('intention');
+    var data = this.store.find('intention');
+    return data;
   }.property(),
+
   affiliations_select: function() {
     return this.store.find('affiliation');
   }.property(),

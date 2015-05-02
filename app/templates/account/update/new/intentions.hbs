@@ -1,0 +1,16 @@
+<form id="newintention" {{action 'saveAddIntentions' on='submit'}}>
+<div class="row">
+  <div class="large-6 columns">
+    <div class="row collapse postfix">
+      <div class="small-9 columns">
+        {{input id='intention' placeholder='Intention'
+                value=newIntention.intention}}
+      </div>
+      <div class="small-3 columns">
+        <button href="#" class="button postfix">Add</button>
+      </div>
+    </div>
+  </div>
+</div>
+</form>
+<button id="back" class="pull-right micro" {{action 'closeAddIntentions'}}>Back</button>
