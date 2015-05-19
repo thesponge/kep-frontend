@@ -14,8 +14,8 @@
     <small>by {{outlet 'username'}}</small>
     --}}
     <div class="row">
-      <div class="small-9 columns"><hr></div>
-      <div class="small-3 columns">
+      <div class="small-8 columns"><hr></div>
+      <div class="small-4 columns">
         {{!--
         <button class="button micro radius success"
           {{action 'match'}}>
@@ -30,11 +30,13 @@
         {{else}}
           {{#if matchBase}}
           {{else}}
-            {{#link-to 'resources.show' 1 (query-params match=model.id) class="button micro radius success"}}
+            {{#link-to 'resources.show' firstResourceId (query-params match=model.id) class="button micro radius success"}}
               Match
             {{/link-to}}
           {{/if}}
         {{/if}}
+
+        <button {{action 'showAutomatchModal'}} class="button micro radius secondary">AutoMatch users</button>
       </div>
     </div>
     {{#if match}}

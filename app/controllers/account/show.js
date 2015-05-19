@@ -57,6 +57,7 @@ export default Ember.Controller.extend({
     },
     saveAddIntentions: function() {
       console.log("Intention: ", this.get('newIntention'));
+      console.log("self: ", this);
       var self = this;
       self.get('newIntention').save().then(function(){
         self.notifications.addNotification({

@@ -19,6 +19,14 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
                 );
     }
   },
+  setupController: function(controller, model){
+    var self = this;
+    var firstResource = this.store.find('resource').then(function(items){
+      //console.log('first resource: ', items.get('firstObject'));
+      controller.set('firstResourceId', items.get('firstObject').id);
+      controller.set('model', model);
+    });
+  },
   actions: {
     match: function(params){
       console.log('step 1');
@@ -32,6 +40,9 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
         outlet: 'match',
         into: 'assignments/show'
       });
+    },
+    showAutomatchModal: function() {
+      this.controller.showModal('assignments/automatch/automatch-popup');
     },
     showMatchModal: function() {
       this.controller.showModal('match/match-modal');
