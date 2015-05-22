@@ -24,7 +24,7 @@ var Assignment = DS.Model.extend({
   }.property('description'),
 
   is_owner: function(){
-    var session = container.lookup('simple-auth-session:main')
+    var session = this.container.lookup('simple-auth-session:main');
     return this.get('user_id') === session.content.id;
   }.property(),
 

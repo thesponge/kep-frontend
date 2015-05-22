@@ -10,11 +10,11 @@ export default Ember.Controller.extend({
   }.property(),
   skills_select: function() {
     var output = [];
-    var data = this.store.fetchAll('skill').then(function(records){
+    this.store.fetchAll('skill').then(function(records){
       records.forEach(function(item){
 
         var filter = output.filter(function(obj) {
-              return obj.text == item.get('category');
+              return obj.text === item.get('category');
             });
 
         if (filter.length === 0) {
@@ -60,9 +60,10 @@ export default Ember.Controller.extend({
       function(response) {
         console.error('There was a problem', response);
         Object.keys(response.errors).map(function(value, index) {
+          console.log(index);
           response.errors[value].map(function(v, i){
             self.notifications.addNotification({
-              message: value + ' ' + v,
+              message: i + '. ' + value + ' ' + v,
               type: 'error',
               autoClear: true,
               clearDuration: 2500

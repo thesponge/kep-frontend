@@ -7,7 +7,7 @@ export default Ember.Controller.extend({
       message: message,
       type: type,
       autoClear: true
-    })
+    });
   },
   model: function(params){
     return this.store.find('account', params);
@@ -15,15 +15,15 @@ export default Ember.Controller.extend({
   newIntention: null,
 
   updateAttribute: function(property) {
-    this.set('model.account.'+property, this.get('model.account.'+property))
+    this.set('model.account.' + property, this.get('model.account.' + property));
     this.get('model.account').save().then(function(){
       this.showNotification('Success!', 'success');
       this.get('modal').hide();
     }.bind(this),
-    function(response){
+    function(){
       this.showNotification('There was an error!', 'error');
       this.get('modal').hide();
-    }.bind(this))
+    }.bind(this));
   },
   actions: {
     updateBio: function() {
@@ -98,11 +98,11 @@ export default Ember.Controller.extend({
   }.property(),
   skills_select: function() {
     var output = [];
-    var data = this.store.fetchAll('skill').then(function(records){
+    this.store.fetchAll('skill').then(function(records){
       records.forEach(function(item){
 
         var filter = output.filter(function(obj) {
-              return obj.text == item.get('category');
+              return obj.text === item.get('category');
             });
 
         if (filter.length === 0) {

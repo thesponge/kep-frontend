@@ -26,7 +26,7 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
   //}
   titleToken: "Match dashboard",
   actions: {
-    notificationsMessage: function(error){
+    notificationsMessage: function(){
       console.log('Messages not implemented yet.');
       this.notifications.addNotification({
           message: 'Boo',

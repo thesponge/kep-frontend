@@ -6,7 +6,7 @@ export default Ember.Controller.extend({
   }.property(),
   intentions_select: function() {
     var output = [];
-    var data = this.store.fetchAll('intention').then(function(records){
+    this.store.fetchAll('intention').then(function(records){
       records.forEach(function(item){
         output.push({id: item.get('id'), text: item.get('intention')});
       });
@@ -44,9 +44,10 @@ export default Ember.Controller.extend({
       function(response) {
         console.error('There was a problem', response);
         Object.keys(response.errors).map(function(value, index) {
+          console.log(index);
           response.errors[value].map(function(v, i){
             self.notifications.addNotification({
-              message: value + ' ' + v,
+              message: i + '. ' + value + ' ' + v,
               type: 'error',
               autoClear: true,
               clearDuration: 2500

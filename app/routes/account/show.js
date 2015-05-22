@@ -5,6 +5,7 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
   titleToken: 'Profile',
   actions: {
     modalForModel: function(template, model){
+      console.log('Setting template ' + template + ' for model ' + model);
       //this.controller.showModal(template);
       var modal = this.controller.get('modal');
       var self = this;

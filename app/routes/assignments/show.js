@@ -20,19 +20,18 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
     }
   },
   setupController: function(controller, model){
-    var self = this;
-    var firstResource = this.store.find('resource').then(function(items){
+    this.store.find('resource').then(function(items){
       //console.log('first resource: ', items.get('firstObject'));
       controller.set('firstResourceId', items.get('firstObject').id);
       controller.set('model', model);
     });
   },
   actions: {
-    match: function(params){
+    match: function(){
       console.log('step 1');
       this.controller.set('match', (Math.floor(Math.random() * 6) + 1));
     },
-    matchExit: function(params){
+    matchExit: function(){
       console.log('Called matchExit from assignments route');
       this.controller.set('match', null);
       this.controllerFor('resources.show').set('match', undefined);
@@ -57,7 +56,7 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
         controller: 'resources.show'
       });
     },
-    sendMatch: function(params) {
+    sendMatch: function() {
       var newMatch        = this.store.createRecord('match');
       //newMatch.assignment_id     = this.controller.match;
       //newMatch.resource_id = this.context.id;
@@ -73,14 +72,14 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
           message: 'Yay, you made a match!',
           type: 'success'
         });
-      })
+      });
     }
   },
   renderTemplate: function(params){
     this.render();
 
     var match = params.match;
-    if(match != undefined) {
+    if(match !== null) {
       Ember.$('resources-container .rollmask').show();
       var resourcesController = this.controllerFor('resources.show');
       console.log('rT params: ', match);

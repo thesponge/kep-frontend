@@ -36,7 +36,6 @@
     "ember-cli-htmlbars": "0.7.4",
     "ember-cli-ic-ajax": "0.1.1",
     "ember-cli-inject-live-reload": "^1.3.0",
-    "ember-cli-loading-slider": "^1.1.0",
     "ember-cli-lorem-ipsum": "0.0.2",
     "ember-cli-notifications": "1.2.1",
     "ember-cli-pretender": "0.3.1",

@@ -9,17 +9,17 @@ export default Ember.Controller.extend({
     this.store.find('assignment-reward').then(function(records){
       records.forEach(function(item){
         output.push({id: item.get('id'), text: item.get('reward')});
-      })
+      });
     });
     return output;
   }.property(),
   skills_select: function() {
     var output = [];
-    var data = this.store.fetchAll('skill').then(function(records){
+    this.store.fetchAll('skill').then(function(records){
       records.forEach(function(item){
 
         var filter = output.filter(function(obj) {
-              return obj.text == item.get('category');
+              return obj.text === item.get('category');
             });
 
         if (filter.length === 0) {
@@ -83,9 +83,10 @@ export default Ember.Controller.extend({
       function(response) {
         console.error('There was a problem', response);
         Object.keys(response.errors).map(function(value, index) {
+          console.log('Response value, index: ', value, index);
           response.errors[value].map(function(v, i){
             self.notifications.addNotification({
-              message: value + ' ' + v,
+              message: i + '. ' + value + ' ' + v,
               type: 'error',
               autoClear: true,
               clearDuration: 2500
