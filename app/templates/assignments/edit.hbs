@@ -36,6 +36,7 @@
     </div>
   </div>
   <hr>
+  {{input id='initial_rewards' type='hidden' value=assignment.assignment_reward_ids}}
   <button id="cancel" class="pull-right secondary" {{action 'cancel'}}>Cancel</button>
   {{!--
   {{#link-to 'assignments.show' class="button pull-right secondary"}}Cancel{{/link-to}}

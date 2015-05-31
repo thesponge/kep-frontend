@@ -42,7 +42,32 @@ var Assignment = DS.Model.extend({
       output.push({id: item.get('id'), text: item.get('name')});
     });
     return output;
-  }.property()
+  }.property(),
+
+  initial_skills: function() {
+    var output = [];
+    this.get('skills').forEach(function(item){
+      output.push(item.get('id'));
+    });
+    return output;
+  }.property('skills'),
+
+  initial_rewards: function() {
+    //var self = this;
+    //var output = this.reload().then(function(model){
+    //  var output = [];
+    //  model.get('assignment_rewards').forEach(function(item){
+    //    output.push(item.get('id'));
+    //  });
+    //  return output;
+    //});
+    //return output.result;
+    var output = [];
+    this.get('assignment_rewards').forEach(function(item){
+      output.push(item.get('id'));
+    });
+    return output;
+  }.property('assignment_rewards')
 });
 
 export default Assignment;

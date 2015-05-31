@@ -21,7 +21,7 @@ var Account = DS.Model.extend({
   user            : DS.belongsTo ('user'),
   is_owner: function(){
     var session = this.container.lookup('simple-auth-session:main');
-    return this.get('id') === session.content.id;
+    return this.get('id').toString() === session.content.id.toString();
   }.property()
 });
 

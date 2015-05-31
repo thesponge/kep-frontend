@@ -69,14 +69,14 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
   },
   renderTemplate: function(params){
     this.render();
-    this.render('account/username', {
-      outlet: 'username',
-      into: 'resources/show',
-      controller: 'account.show'
-    });
+    //this.render('account/username', {
+    //  outlet: 'username',
+    //  into: 'resources/show',
+    //  controller: 'account.show'
+    //});
 
     var match = params.match;
-    if(match !== null) {
+    if(match !== null && typeof match !== "undefined") {
       Ember.$('assignments-container .rollmask').show();
       var assignmentsController = this.controllerFor('assignments.show');
       console.log('rT params: ', match);

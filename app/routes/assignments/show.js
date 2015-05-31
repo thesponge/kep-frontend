@@ -24,6 +24,11 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
       //console.log('first resource: ', items.get('firstObject'));
       controller.set('firstResourceId', items.get('firstObject').id);
       controller.set('model', model);
+      controller.get('model').reload().then(function(model){
+        console.log('model reloaded');
+        console.log('model initial_rewards', controller.get('model.initial_rewards'));
+        console.log('model isReloading', controller.get('model.isReloading'));
+      });
     });
   },
   actions: {
@@ -79,7 +84,7 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
     this.render();
 
     var match = params.match;
-    if(match !== null) {
+    if(match !== null && typeof match !== "undefined") {
       Ember.$('resources-container .rollmask').show();
       var resourcesController = this.controllerFor('resources.show');
       console.log('rT params: ', match);
