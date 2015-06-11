@@ -15,6 +15,7 @@ You will need the following things properly installed on your computer.
 * [Node.js](http://nodejs.org/) (with NPM)
 * [Bower](http://bower.io/)
 * [Ember CLI](http://www.ember-cli.com/)
+* g++ (gcc-c++ for most GNU/Linux distros)
 
 ```bash
 npm install -g bower
