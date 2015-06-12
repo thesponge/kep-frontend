@@ -1,5 +1,5 @@
-<div class="notifications-container">
-    {{#each notification in notifications}}
+<div class="c-notifications__container">
+    {{#each notifications as |notification|}}
         {{notification-message notification=notification}}
     {{/each}}
 </div>
