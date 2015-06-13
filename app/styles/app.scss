@@ -373,3 +373,12 @@ div.profile{
 }
 
 /* End helper classes */
+
+/* Notifications customizations */
+div.c-notifications__container {
+  width: 30em;
+  left: 50%;
+  margin-left: -15em;
+  position: absolute;
+}
+/* End notifications customizations */
