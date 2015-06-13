@@ -8,8 +8,8 @@
     <small>by {{outlet 'username'}}</small>
     --}}
     <div class="row">
-      <div class="small-9 columns"><hr></div>
-      <div class="small-3 columns">
+      <div class="small-7 columns"><hr></div>
+      <div class="small-5 columns">
         {{!--
         <button class="button micro radius success"
           {{action 'match'}}>
@@ -17,14 +17,26 @@
         </button>
         --}}
         {{#if match}}
-          <button class="button micro radius secondary"
+          <button class="button tiny secondary pull-right"
             {{action 'matchExit'}}>
             Exit match
           </button>
         {{else}}
-          {{#link-to 'assignments.show' 1 (query-params match=model.id) class="button micro radius success"}}
-            Match
-          {{/link-to}}
+          {{#if matchBase}}
+          {{else}}
+            {{#link-to 'assignments.show' firstAssignmentId (query-params match=model.id) class="button tiny success pull-right"}}
+              Enter Match
+            {{/link-to}}
+          {{/if}}
+        {{/if}}
+        {{#if model.is_owner}}
+          <button href="#" id="drop1-btn" data-dropdown="drop1" aria-controls="drop1" aria-expanded="false" class="button tiny secondary dropdown">Actions</button><br>
+          <ul id="drop1" data-dropdown-content class="f-dropdown" aria-hidden="true" aria-autoclose="false">
+              <li class="choice-from-dropdown"><a href="#" {{action 'editResource'}}>Edit</a></li>
+              {{#confirm-extension questionText='Do you really want to destroy this?' confirmText='Yes' declineText='No' confirmAction='deleteResource'}}
+                <li class="choice-from-dropdown"><a href="#" >Delete</a></li>
+              {{/confirm-extension}}
+          </ul>
         {{/if}}
       </div>
     </div>
@@ -78,16 +90,6 @@
       </li>
     </ul>
 
-    <div class="pull-right">
-    {{#if model.is_owner}}
-      <ul class="button-group radius" style="position: relative;">
-        <li><a href="#" class="button tiny" {{action 'editResource'}}>Edit</a></li>
-        {{#confirm-extension questionText='Do you really want to destroy this?' confirmText='Yes' declineText='No' confirmAction='deleteResource'}}
-          <li><a href="#" class="button tiny alert">Delete</a></li>
-        {{/confirm-extension}}
-      </ul>
-    {{/if}}
-    </div>
   </div>
   <div class="small-1 columns">&nbsp;</div>
 </div>

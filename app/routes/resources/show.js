@@ -21,7 +21,14 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
   },
   afterModel: function() {
   },
- actions: {
+  setupController: function(controller, model){
+    this.store.find('assignment').then(function(items){
+      //console.log('first resource: ', items.get('firstObject'));
+      controller.set('firstAssignmentId', items.get('firstObject').id);
+      controller.set('model', model);
+    });
+  },
+  actions: {
     match: function(){
       console.log('step 1');
       this.controller.set('match', (Math.floor(Math.random() * 6) + 1));
