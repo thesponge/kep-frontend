@@ -7,8 +7,6 @@ var Resource = DS.Model.extend({
   user_id        : attr(),
   title          : attr('string'),
   description    : attr('string'),
-  travel         : attr('string'),
-  driver_license : attr('string'),
   intentions     : DS.hasMany('intention', {inverse : 'resource', async : true, embedded : 'always'}),
   intention_ids  : attr(),
   resource_priority_ids  : attr(),
