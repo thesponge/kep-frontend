@@ -44,7 +44,7 @@ Router.map(function() {
       });
       this.resource('assignments', function() {
         this.route('show', {path: ':assignment_id'}, function(){
-          this.resource('automatic_matches');
+          this.route('automatches');
         });
         this.route('edit', {path: ':assignment_id/edit'});
         this.route('new', {path: 'new'});

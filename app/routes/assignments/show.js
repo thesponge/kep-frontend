@@ -20,18 +20,26 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
     }
   },
   setupController: function(controller, model){
+    // controller.set('assignment-match', Ember.computed.alias('score-account-assignment'));
+    //this.store.find('assignment-match', {assignment_id: '8'}).then(function(){
+    ////this.store.find('score-account-assignment', {assignment_id: '8'}).then(function(items){
+    //  console.log('Found some matches!');
+    //});
     this.store.find('resource').then(function(items){
       //console.log('first resource: ', items.get('firstObject'));
       controller.set('firstResourceId', items.get('firstObject').id);
       controller.set('model', model);
       controller.get('model').reload().then(function(model){
-        console.log('model reloaded');
+        console.log('model reloaded', model);
         console.log('model initial_rewards', controller.get('model.initial_rewards'));
         console.log('model isReloading', controller.get('model.isReloading'));
       });
     });
   },
   actions: {
+    //statePrivate: function() {
+    //  alert('state: private');
+    //},
     match: function(){
       console.log('step 1');
       this.controller.set('match', (Math.floor(Math.random() * 6) + 1));
@@ -46,7 +54,10 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
       });
     },
     showAutomatchModal: function() {
-      this.controller.showModal('assignments/automatch/automatch-popup');
+      //this.controller.showModal('assignments/automatch/automatch-popup');
+      ////Ember.$('#drop1').hide();
+      //Ember.$('#drop1-btn').trigger('click.fndtn.dropdown');
+      this.transitionTo('assignments.show.automatches');
     },
     showMatchModal: function() {
       this.controller.showModal('match/match-modal');
@@ -77,6 +88,28 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
           message: 'Yay, you made a match!',
           type: 'success'
         });
+      });
+    },
+    getRSVP: function() {
+      var url = 'http://localhost:3000/v1/assignment_bids';
+      return new Promise(function(resolve, reject){
+        var xhr = new XMLHttpRequest();
+
+        xhr.open('POST', url);
+        xhr.onreadystatechange = handler;
+        xhr.responseType = 'json';
+        xhr.setRequestHeader('Accept', 'application/json');
+        xhr.send();
+
+        function handler() {
+          if (this.readyState === this.DONE) {
+            if (this.status === 200) {
+              resolve(this.response);
+            } else {
+              reject(new Error('getJSON: `' + url + '` failed with status: [' + this.status + ']'));
+            }
+          }
+        };
       });
     }
   },

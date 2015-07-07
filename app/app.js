@@ -44,7 +44,7 @@ DS.Store.reopen({
 DS.Model.reopen({
   _setupChangeObservers: Ember.on('init', function() {
     return this.eachRelationship((function(_this) {
-      return function(name, relationship) {
+      return function(name/*, relationship*/) {
         var observer = {
           change: function() {
             return _this._changedRelations.push(name);

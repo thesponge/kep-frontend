@@ -1,0 +1,13 @@
+<div id="myModal" class="reveal-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="false" role="dialog">
+  <div class="row">
+    <div class="columns small-3 v-separator-right">
+      first
+    </div>
+    <div class="columns small-9">
+      second
+      {{#each match in matches}}
+        <p>{{match.assignment_id}}</p>
+      {{/each}}
+    </div>
+  </div>
+</div>

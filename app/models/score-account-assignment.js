@@ -7,6 +7,8 @@ var Score = DS.Model.extend({
   score_categories : DS.attr('string'),
   created_at       : DS.attr(),
   updated_at       : DS.attr(),
+  assignment       : DS.belongsTo('assignment',  {inverse : 'assignment_matches'}),
+  //score-account-assignment : DS.belongsTo('score-account-assignment', {polymorphic: true}),
 });
 
 export default Score;

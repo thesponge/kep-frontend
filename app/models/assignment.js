@@ -7,10 +7,15 @@ var Assignment = DS.Model.extend({
   user_id                 : attr(),
   title                   : attr('string'),
   description             : attr('string'),
+  state                   : attr('string'),
   travel                  : attr('string'),
   driver_license          : attr('string'),
+  state                   : attr('string'),
   skills                  : DS.hasMany('skill',            {inverse : 'assignment', async : true, embedded : 'always'}),
   assignment_rewards      : DS.hasMany('assignmentReward', {inverse : 'assignment', async : true, embedded : 'always'}),
+  //automatic_matches: DS.hasMany('score_account_assignments/assignmentMatches', {inverse: 'assignment'}),
+  assignment_matches: DS.hasMany('assignmentMatch', {inverse: 'assignment'}),
+  //assignment_bids: DS.hasMany('assignmentBid', {inverse: 'assignment'}),
   skill_ids               : attr(),
   assignment_reward_ids   : attr(),
   assignment_priority_ids : attr(),
@@ -67,7 +72,16 @@ var Assignment = DS.Model.extend({
       output.push(item.get('id'));
     });
     return output;
-  }.property('assignment_rewards')
+  }.property('assignment_rewards'),
+
+  progressable: function(){
+    var s = this.get('state');
+    if (s != 'draft' || s != 'closed' || s != 'completed') {
+      return true;
+    } else {
+      return false;
+    }
+  }.property()
 });
 
 export default Assignment;

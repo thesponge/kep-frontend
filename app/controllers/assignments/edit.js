@@ -49,15 +49,21 @@ export default Ember.Controller.extend({
   actions: {
     updateAssignment: function() {
       var compare = function(first, second) {
-        if (first.length != second.length) return false;
+        if (first.length !== second.length) {
+          return false;
+        }
         for (var i = 0; i < second.length; i++) {
             if (first[i].compare) {
-                if (!first[i].compare(second[i])) return false;
+                if (!first[i].compare(second[i])) {
+                  return false;
+                }
             }
-            if (first[i] !== second[i]) return false;
+            if (first[i] !== second[i]) {
+              return false;
+            }
         }
         return true;
-      }
+      };
 
       var selected_skills = this.get('assignment.skills_select2');
       var selected_skills_output = [];
@@ -80,10 +86,10 @@ export default Ember.Controller.extend({
       console.log("Description: ", this.get('assignment.description'));
       this.set('assignment.description', this.get('assignment.description'));
 
-      if(compare(selected_skills_output, this.get('assignment.initial_skills')) == false) {
+      if(compare(selected_skills_output, this.get('assignment.initial_skills')) === false) {
         this.set('assignment.skill_ids', selected_skills_output);
       }
-      if(compare(selected_rewards_output, this.get('assignment.initial_rewards')) == false) {
+      if(compare(selected_rewards_output, this.get('assignment.initial_rewards')) === false) {
         this.set('assignment.assignment_reward_ids', selected_rewards_output);
       }
 
