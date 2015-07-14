@@ -1,7 +1,7 @@
 import Ember from 'ember';
 
 export default Ember.View.extend({
-  didInsertElement: function() {
+  didInsertElement: function(controller) {
     this._super();
     //alert('blaaa');
     Ember.run.scheduleOnce('afterRender', this, function(){
@@ -18,7 +18,9 @@ export default Ember.View.extend({
       //  //self.$('div.content').css('outline', '1px solid orange');
       //});
       this.$(document).on('close.fndtn.reveal', '[data-reveal]', function () {
-        self.get('controller.target.router').transitionTo('assignments.show', self.get('controller.model'));
+        //self.get('controller.target.router').transitionTo('assignments.show', self.get('assignment_id'));
+        //console.log('controller: ', self.get('controller'));
+        self.get('controller.target.router').transitionTo('assignments.show', self.get('controller.assignment_id'));
       });
     })
   }

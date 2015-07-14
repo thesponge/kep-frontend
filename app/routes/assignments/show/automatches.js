@@ -9,10 +9,12 @@ export default Ember.Route.extend({
   activate: function() {
   },
   model: function(params, transition) {
+    console.log('ass id: ', transition.handlerInfos[4].params.assignment_id);
     this.assignment_id = transition.handlerInfos[4].params.assignment_id;
   },
   setupController: function(controller){
     var self = this;
+    controller.set('assignment_id', self.assignment_id);
     Ember.run.scheduleOnce('actions', function changeState(){
       $.ajax({
         type: "GET",
