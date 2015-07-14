@@ -5,7 +5,7 @@ export default Ember.Route.extend({
   host          : ENV.APP.apiHost,
   namespace     : ENV.APP.apiNamespace,
   assignment_id : null,
-  matches       : null,
+  matches       : function() { return []; }.property(),
   activate: function() {
   },
   model: function(params, transition) {
@@ -15,19 +15,29 @@ export default Ember.Route.extend({
   setupController: function(controller){
     var self = this;
     controller.set('assignment_id', self.assignment_id);
-    Ember.run.scheduleOnce('actions', function changeState(){
-      $.ajax({
-        type: "GET",
-        url: self.host + "/" + self.namespace + "/score_account_assignments/assignment_matches?assignment_id=" + self.assignment_id,
-      })
-      .done(function(data){
-        self.matches = data.score_account_assignments;
+    Ember.run(function() {
+      //$.ajax({
+      //  type: "GET",
+      //  url: self.host + "/" + self.namespace + "/score_account_assignments/assignment_matches?assignment_id=" + self.assignment_id,
+      //})
+      //.then(function(data){
+      //  self.matches = data.score_account_assignments;
+      //})
+      //.fail(function(){
+      //  alert('Failed!');
+      //});
+      $.getJSON(self.host + "/" + self.namespace + "/score_account_assignments/assignment_matches?assignment_id=" + self.assignment_id)
+      .then(function(data){
+        //self.matches = data.score_account_assignments;
+        controller.set('model', data.score_account_assignments);
       })
       .fail(function(){
         alert('Failed!');
       });
     });
-    controller.set('matches', self.matches);
+    //Ember.run(function() {
+      //controller.set('model', self.matches);
+    //});
   },
 
 });

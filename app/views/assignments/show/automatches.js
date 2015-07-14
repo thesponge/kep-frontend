@@ -1,6 +1,7 @@
 import Ember from 'ember';
 
 export default Ember.View.extend({
+  matches: [],
   didInsertElement: function(controller) {
     this._super();
     //alert('blaaa');
@@ -23,5 +24,8 @@ export default Ember.View.extend({
         self.get('controller.target.router').transitionTo('assignments.show', self.get('controller.assignment_id'));
       });
     })
-  }
+  },
+  matchesChanged: function() {
+    this.rerender();
+  }.observes('matches')
 });
