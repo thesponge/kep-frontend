@@ -31,5 +31,8 @@ var app = new EmberApp({
 // along with the exports of each module as its value.
 
 //app.import("bower_components/font-awesome/css/font-awesome.css");
+app.import("bower_components/typeahead.js/dist/bloodhound.min.js");
+app.import("bower_components/typeahead.js/dist/typeahead.bundle.min.js");
+app.import("bower_components/typeahead-addresspicker/dist/typeahead-addresspicker.min.js");
 
 module.exports = mergeTrees([app.toTree()], { overwrite: true });

@@ -12,11 +12,11 @@ module.exports = function(environment) {
         // e.g. 'with-controller': true
       }
     },
+    emberDevTools: {global: true},
 
     APP: {
       // Here you can pass flags/options to your application instance
       // when it is created
-      emberDevTools: {global: true},
       'ember-cli-notifications': {
           includeFontAwesome: true
       },
@@ -27,7 +27,7 @@ module.exports = function(environment) {
     ENV.APP.apiHost = 'http://localhost:3000';
     ENV.APP.apiNamespace = 'v1';
     // ENV.APP.LOG_RESOLVER = true;
-    ENV.APP.LOG_ACTIVE_GENERATION = true;
+    // ENV.APP.LOG_ACTIVE_GENERATION = true;
     // ENV.APP.LOG_TRANSITIONS = true;
     // ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
     // ENV.APP.LOG_VIEW_LOOKUPS = true;

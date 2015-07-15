@@ -7,8 +7,6 @@ var Resource = DS.Model.extend({
   user_id        : attr(),
   title          : attr('string'),
   description    : attr('string'),
-  travel         : attr('string'),
-  driver_license : attr('string'),
   intentions     : DS.hasMany('intention', {inverse : 'resource', async : true, embedded : 'always'}),
   intention_ids  : attr(),
   resource_priority_ids  : attr(),
@@ -20,7 +18,7 @@ var Resource = DS.Model.extend({
     }
   }.property('description'),
   is_owner: function(){
-    var session = container.lookup('simple-auth-session:main')
+    var session = this.container.lookup('simple-auth-session:main');
     return this.get('user_id') === session.content.id;
   }.property(),
   intentions_select2: function() {

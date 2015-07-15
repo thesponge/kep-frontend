@@ -21,12 +21,19 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
   },
   afterModel: function() {
   },
- actions: {
-    match: function(params){
+  setupController: function(controller, model){
+    this.store.find('assignment').then(function(items){
+      //console.log('first resource: ', items.get('firstObject'));
+      controller.set('firstAssignmentId', items.get('firstObject').id);
+      controller.set('model', model);
+    });
+  },
+  actions: {
+    match: function(){
       console.log('step 1');
       this.controller.set('match', (Math.floor(Math.random() * 6) + 1));
     },
-    matchExit: function(params){
+    matchExit: function(){
       console.log('Called matchExit from resources route');
       this.controller.set('match', undefined);
       this.controllerFor('assignments.show').set('match', null);
@@ -48,7 +55,7 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
         controller: 'resources.show'
       });
     },
-    sendMatch: function(params) {
+    sendMatch: function() {
       var newMatch        = this.store.createRecord('match');
       //newMatch.assignment_id     = this.controller.match;
       //newMatch.resource_id = this.context.id;
@@ -64,19 +71,19 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
           message: 'Yay, you made a match!',
           type: 'success'
         });
-      })
+      });
     }
   },
   renderTemplate: function(params){
     this.render();
-    this.render('account/username', {
-      outlet: 'username',
-      into: 'resources/show',
-      controller: 'account.show'
-    });
+    //this.render('account/username', {
+    //  outlet: 'username',
+    //  into: 'resources/show',
+    //  controller: 'account.show'
+    //});
 
     var match = params.match;
-    if(match != undefined) {
+    if(match !== null && typeof match !== "undefined") {
       Ember.$('assignments-container .rollmask').show();
       var assignmentsController = this.controllerFor('assignments.show');
       console.log('rT params: ', match);

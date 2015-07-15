@@ -5,17 +5,25 @@
 </style>
 
 <div class="row">
+  <div class="small-12 columns">
+    <p class="text-center">
+      {{assignment-timeline state=model.state aid=model.id}}
+    </p>
+  </div>
+</div>
+<div class="row">
   <div class="small-1 columns">&nbsp;</div>
   <div class="small-10 columns content">
     <h1 class="content-title">
       {{model.title}}
+      <small><span class="label secondary radius"><i>{{model.state}}</i></span></small>
     </h1>
     {{!--
     <small>by {{outlet 'username'}}</small>
     --}}
     <div class="row">
-      <div class="small-9 columns"><hr></div>
-      <div class="small-3 columns">
+      <div class="small-6 columns"><hr></div>
+      <div class="small-6 columns">
         {{!--
         <button class="button micro radius success"
           {{action 'match'}}>
@@ -23,18 +31,28 @@
         </button>
         --}}
         {{#if match}}
-          <button class="button micro radius secondary"
+          <button class="button tiny secondary pull-right"
             {{action 'matchExit'}}>
             Exit match
           </button>
         {{else}}
           {{#if matchBase}}
           {{else}}
-            {{#link-to 'resources.show' 1 (query-params match=model.id) class="button micro radius success"}}
-              Match
+            {{#link-to 'resources.show' firstResourceId (query-params match=model.id) class="button tiny success pull-right"}}
+              Enter Match
             {{/link-to}}
           {{/if}}
         {{/if}}
+        <button href="#" id="drop1-btn" data-dropdown="drop1" aria-controls="drop1" aria-expanded="false" class="button tiny secondary dropdown pull-right">Actions</button><br>
+        <ul id="drop1" data-dropdown-content class="f-dropdown" aria-hidden="true" aria-autoclose="false">
+          <li class="choice-from-dropdown"><a href="#" {{action 'showAutomatchModal'}}>Show automatch users</a></li>
+          {{#if model.is_owner}}
+            <li class="choice-from-dropdown"><a href="#" {{action 'editAssignment'}}>Edit</a></li>
+            {{#confirm-extension questionText='Do you really want to destroy this?' confirmText='Yes' declineText='No' confirmAction='deleteAssignment'}}
+              <li class="choice-from-dropdown"><a href="#" >Delete</a></li>
+            {{/confirm-extension}}
+          {{/if}}
+        </ul>
       </div>
     </div>
     {{#if match}}
@@ -91,6 +109,7 @@
       </li>
     </ul>
 
+    {{!--
     <div class="pull-right">
     {{#if model.is_owner}}
       <ul class="button-group radius" style="position: relative;">
@@ -101,9 +120,36 @@
       </ul>
     {{/if}}
     </div>
+    --}}
+
+    {{#if model.is_owner}}
+    {{else}}
+      <div class="row">
+        <div class="small-12 columns">
+          <form id="addbid" {{action 'addBid' on='submit'}}>
+            {{input id='assignment_id' type='hidden' value=model.id}}
+            {{input id='user_id' type='hidden' value=model.user_id}}
+            {{!--<button {{action "addBid"}} class="tiny secondary pull-right">Take assignment</button>--}}
+            <button type="submit" class="tiny secondary pull-right">Take assignment</button>
+          </form>
+        </div>
+      </div>
+    {{/if}}
+
+    <div class="row">
+      <div class="small-1 columns">&nbsp;</div>
+      <div class="small-10 columns">
+        <fieldset>
+          <legend>Current bids:</legend>
+        </fieldset>
+      </div>
+      <div class="small-1 columns">&nbsp;</div>
+    </div>
   </div>
   <div class="small-1 columns">&nbsp;</div>
+
 </div>
+
 
 {{#if matchBase}}
 {{else}}
@@ -122,3 +168,4 @@
   {{outlet 'match'}}
 </div>
 
+{{outlet}}

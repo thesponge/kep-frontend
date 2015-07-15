@@ -19,7 +19,37 @@ export default Ember.Controller.extend({
     editAssignment: function() {
       var self = this;
       self.transitionToRoute('assignments.edit', self.get('model'));
-    }
+    },
+    addBid: function(model) {
+      var self = this;
+
+      var bid = this.store.createRecord('assignmentBid', {
+        assignment_id: this.get('model.id'),
+      })
+      bid.save().then(function() {
+        console.log('Saved!');
+        console.log('bid: ', bid);
+        self.notifications.addNotification({
+            message: 'Bid #' + bid.id + ' updated!',
+            type: 'success',
+            autoClear: true
+        });
+      },
+      function(response) {
+        console.error('There was a problem', response);
+        Object.keys(response.errors).map(function(value, index) {
+          console.log('Response value, index: ', value, index);
+          response.errors[value].map(function(v, i){
+            self.notifications.addNotification({
+              message: i + '. ' + value + ' ' + v,
+              type: 'error',
+              autoClear: true,
+              clearDuration: 2500
+            });
+          });
+        });
+      });
+    },
   },
   setupController: function(controller, model) {
   //  model.reload();

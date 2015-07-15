@@ -4,7 +4,7 @@ Ember.LinkView.reopen({
   attributeBindings: ['data-alert']
 });
 
-export default Ember.ObjectController.extend({
+export default Ember.Controller.extend({
   //user: function() {
   //  return this.store.deleteRecord('user');
   //}.property(),

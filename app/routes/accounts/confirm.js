@@ -15,10 +15,11 @@ export default Ember.Route.extend({
       url: ENV.APP.apiHost + '/users/confirmation?confirmation_token=' + token
     });
     req.then(function(result){
-      console.log('Response from Rails', result.response);
+      //console.log('Response from Rails', result.response);
       self.notifications.addNotification({
         message: 'Your account is now activated!',
-        type: 'success'
+        type: 'success',
+        autoClear: true
       });
       self.controller.transitionToRoute('login');
     },

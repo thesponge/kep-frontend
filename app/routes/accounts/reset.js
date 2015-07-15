@@ -8,7 +8,7 @@ export default Ember.Route.extend({
   },
   actions: {
     deviseSendReset: function(email, password, password_confirmation, params) {
-      console.log("params", this);
+      console.log("params", params);
       console.log("queryParams", this.queryParams);
       var reset_password_token = this.controller.reset_password_token;
       var req = raw({

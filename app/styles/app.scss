@@ -363,3 +363,142 @@ div.profile{
   text-decoration: underline;
   cursor: pointer;
 }
+
+/* END MISC FOUNDATION CUSTOMIZATIONS */
+
+/* Helper classes */
+
+.v-separator-right {
+  border-right: 1px solid gray;
+}
+
+/* End helper classes */
+
+/* Notifications customizations */
+div.c-notifications__container {
+  width: 30em;
+  left: 50%;
+  margin-left: -15em;
+  position: absolute;
+}
+/* End notifications customizations */
+
+/* Assignment breadcrumbs */
+//colors
+$color_royal_purple_approx: rebeccapurple;
+$white: white;
+$color_mexican_red_approx: brown;
+$color_reno_sand_approx: hsla(34,85%,35%,1);
+$color_meteor_approx: hsla(34,85%,45%,1);
+$color_fire_bush_approx: hsla(34,85%,55%,1);
+$color_casablanca_approx: hsla(34,85%,65%,1);
+$color_chardonnay_approx: hsla(34,85%,75%,1);
+$black: black;
+$color_antique_bronze_approx: hsla(34,85%,25%,1);
+
+//fonts
+//colors
+$crumb_bg: #dae0fe;
+$crumb_fg: #50505d;
+$color_mabel_approx: #d4f2ff;
+$crumb_hover_bg: $kep-menubase;
+
+.as-tl-breadcrumbs {
+    text-align: center;
+    ul {
+        list-style: none;
+        display: inline-table;
+        margin: 0px auto;
+        li {
+            display: inline;
+            a {
+                display: block;
+                float: left;
+                height: 30px;
+                background: $crumb_bg;
+                text-align: center;
+                padding: 5px 4px 0 20px;
+                position: relative;
+                margin: 0 6px 0 0;
+                font-size: .8em;
+                text-decoration: none;
+                color: $crumb_fg;
+                >i {
+                    float: none !important;
+                    font-size: .8em !important;
+                }
+                &:after {
+                    content: "";
+                    border-top: 15px solid transparent;
+                    border-bottom: 15px solid transparent;
+                    border-left: 15px solid $crumb_bg;
+                    position: absolute;
+                    right: -15px;
+                    top: 0;
+                    z-index: 1;
+                }
+                &:before {
+                    content: "";
+                    border-top: 15px solid transparent;
+                    border-bottom: 15px solid transparent;
+                    border-left: 15px solid white;
+                    position: absolute;
+                    left: 0;
+                    top: 0;
+                }
+                &:hover {
+                    background: $crumb_hover_bg;
+                    color: white;
+                    &:after {
+                        border-left-color: $crumb_hover_bg;
+                    }
+                }
+            }
+            &:first-child a {
+                //Instead of the line below you could use @includeborder-top-left-radius($radius)
+                border-top-left-radius: 10px;
+                //Instead of the line below you could use @includeborder-bottom-left-radius($radius)
+                border-bottom-left-radius: 10px;
+                &:before {
+                    display: none;
+                }
+            }
+            &:last-child a {
+                padding-right: 20px;
+                //Instead of the line below you could use @includeborder-top-right-radius($radius)
+                border-top-right-radius: 10px;
+                //Instead of the line below you could use @includeborder-bottom-right-radius($radius)
+                border-bottom-right-radius: 10px;
+                &:after {
+                    display: none;
+                }
+            }
+        }
+    }
+}
+/* End assignment breadcrumbs */
+
+/* Start automatches popup */
+div.automatch-ui{
+  li.automatch-left {
+    min-height: 50px;
+    &:hover {
+      background-color: darken(#ccc, 30%);
+    }
+  }
+  a.account-link {
+    font-size: 1em;
+    font-variant: small-caps;
+  }
+  .score{
+    border: 1px solid #ccc;
+    padding: 1px 2px;
+    &.total {
+      font-size: 1.3em;
+      font-weight: bold;
+      font-family: serif;
+      color: #000;
+    }
+  }
+}
+/* End automatches popup */
