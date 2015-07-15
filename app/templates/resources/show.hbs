@@ -29,17 +29,19 @@
           Match
         </button>
         --}}
-        {{#if match}}
-          <button class="button tiny secondary pull-right"
-            {{action 'matchExit'}}>
-            Exit match
-          </button>
-        {{else}}
-          {{#if matchBase}}
+        {{#if firstAssignmentId}}
+          {{#if match}}
+            <button class="button tiny secondary pull-right"
+              {{action 'matchExit'}}>
+              Exit match
+            </button>
           {{else}}
-            {{#link-to 'assignments.show' firstAssignmentId (query-params match=model.id) class="button tiny success pull-right"}}
-              Enter Match
-            {{/link-to}}
+            {{#if matchBase}}
+            {{else}}
+              {{#link-to 'assignments.show' firstAssignmentId (query-params match=model.id) class="button tiny success pull-right"}}
+                Enter Match
+              {{/link-to}}
+            {{/if}}
           {{/if}}
         {{/if}}
         {{#if model.is_owner}}

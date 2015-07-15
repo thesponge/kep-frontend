@@ -24,7 +24,9 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
   setupController: function(controller, model){
     this.store.find('assignment').then(function(items){
       //console.log('first resource: ', items.get('firstObject'));
-      controller.set('firstAssignmentId', items.get('firstObject').id);
+      if (typeof items.get('firstObject') !== 'undefined') {
+        controller.set('firstAssignmentId', items.get('firstObject').id);
+      }
       controller.set('model', model);
     });
   },
