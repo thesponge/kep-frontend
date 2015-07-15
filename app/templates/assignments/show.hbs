@@ -30,17 +30,19 @@
           Match
         </button>
         --}}
-        {{#if match}}
-          <button class="button tiny secondary pull-right"
-            {{action 'matchExit'}}>
-            Exit match
-          </button>
-        {{else}}
-          {{#if matchBase}}
+        {{#if firstResourceId}}
+          {{#if match}}
+            <button class="button tiny secondary pull-right"
+              {{action 'matchExit'}}>
+              Exit match
+            </button>
           {{else}}
-            {{#link-to 'resources.show' firstResourceId (query-params match=model.id) class="button tiny success pull-right"}}
-              Enter Match
-            {{/link-to}}
+            {{#if matchBase}}
+            {{else}}
+              {{#link-to 'resources.show' firstResourceId (query-params match=model.id) class="button tiny success pull-right"}}
+                Enter Match
+              {{/link-to}}
+            {{/if}}
           {{/if}}
         {{/if}}
         <button href="#" id="drop1-btn" data-dropdown="drop1" aria-controls="drop1" aria-expanded="false" class="button tiny secondary dropdown pull-right">Actions</button><br>
