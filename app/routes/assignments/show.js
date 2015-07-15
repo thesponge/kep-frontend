@@ -27,7 +27,9 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
     //});
     this.store.find('resource').then(function(items){
       //console.log('first resource: ', items.get('firstObject'));
-      controller.set('firstResourceId', items.get('firstObject').id);
+      if (typeof items.get('firstObject') !== 'undefined') {
+        controller.set('firstResourceId', items.get('firstObject').id);
+      }
       controller.set('model', model);
       controller.get('model').reload().then(function(model){
         console.log('model reloaded', model);
