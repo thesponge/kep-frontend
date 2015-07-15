@@ -477,3 +477,28 @@ $crumb_hover_bg: $kep-menubase;
     }
 }
 /* End assignment breadcrumbs */
+
+/* Start automatches popup */
+div.automatch-ui{
+  li.automatch-left {
+    min-height: 50px;
+    &:hover {
+      background-color: darken(#ccc, 30%);
+    }
+  }
+  a.account-link {
+    font-size: 1em;
+    font-variant: small-caps;
+  }
+  .score{
+    border: 1px solid #ccc;
+    padding: 1px 2px;
+    &.total {
+      font-size: 1.3em;
+      font-weight: bold;
+      font-family: serif;
+      color: #000;
+    }
+  }
+}
+/* End automatches popup */

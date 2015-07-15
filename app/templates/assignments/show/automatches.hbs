@@ -1,13 +1,44 @@
-<div id="myModal" class="reveal-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="false" role="dialog">
+<div id="myModal" class="reveal-modal automatch-ui" data-reveal aria-labelledby="modalTitle" aria-hidden="false" role="dialog">
   <div class="row">
     <div class="columns small-3 v-separator-right">
-      first
+      <ul class="small-block-grid-1">
+        <li>
+          {{#each match in model}}
+                {{#link-to 'account.show' match.account_id class='account-link'}}
+            <div class="row">
+              <div class="columns small-6"><span>
+                {{#if match.account.display_name}}
+                  {{match.account.display_name}}
+                {{else}}
+                  {{match.account.user.email}}
+                {{/if}}
+              </span></div>
+              <div class="columns small-6">
+                <span class="total score">{{match.total_score}}</span>
+              </div>
+            </div>
+                {{/link-to}}
+          {{/each}}
+          <hr>
+        </li>
+      </ul>
     </div>
     <div class="columns small-9">
-      second
-      {{#each match in model}}
-        <p>{{match.assignment_id}}</p>
-      {{/each}}
+      <div class="row">
+        <div class="columns small-3">
+          {{gravatar-image email=match.account.user.email
+            alt=match.account.display_name size=100 default='identicon'}}
+        </div>
+        <div class="columns small-9">
+        </div>
+      </div>
+    </div>
+  </div>
+  <hr>
+  <div class="row">
+    <div class="columns small-3 text-right"><h5>Priorities</h5></div>
+    <div class="columns small-9">
+      <input type="">
     </div>
   </div>
 <a class="close-reveal-modal tiny" aria-label="Close">&#215;</a>
