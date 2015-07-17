@@ -1,37 +1,50 @@
 <div id="myModal" class="reveal-modal automatch-ui" data-reveal aria-labelledby="modalTitle" aria-hidden="false" role="dialog">
   <div class="row">
-    <div class="columns small-3 v-separator-right">
-      <ul class="small-block-grid-1">
-        <li>
-          {{#each match in model}}
-                {{#link-to 'account.show' match.account_id class='account-link'}}
-            <div class="row">
-              <div class="columns small-6"><span>
-                {{#if match.account.display_name}}
-                  {{match.account.display_name}}
-                {{else}}
-                  {{match.account.user.email}}
-                {{/if}}
-              </span></div>
-              <div class="columns small-6">
-                <span class="total score">{{match.total_score}}</span>
+    <ul class="tabs vertical" data-tab style="height: 400px; overflow: auto;">
+      {{#each match in model}}
+        <li class="tab-title">
+          <a href="#panel{{match.id}}" style="padding: 20px 3px 20px 30px;">
+            {{#if match.account.display_name}}
+              {{match.account.display_name}}
+            {{else}}
+              {{match.account.user.email}}
+            {{/if}}
+            <span class="total score pull-right">{{match.total_score}}</span>
+          </a>
+        </li>
+      {{/each}}
+    </ul>
+    <div class="tabs-content" style="height: 400px;">
+      {{#each match in model}}
+        <div class="content" id="panel{{match.id}}">
+          <div style="padding-left: 25%;">
+            {{gravatar-image email=match.account.user.email
+              alt=match.account.display_name size=100 default='identicon'}}
+            {{match.account.display_name}}
+            (<a href="mailto:{{match.account.user.email}}">{{match.account.user.email}}</a>)
+            {{#link-to 'account.show' match.account_id class="button tiny secondary pull-right"}}
+              Visit profile
+            {{/link-to}}
+            <div class="spacer"></div>
+            <div class="row" data-equalizer>
+              <div class="columns small-6 data-equalizer-watch">
+                <fieldset>
+                  <legend>Detailed score</legend>
+                </fieldset>
+              </div>
+              <div class="columns small-6 data-equalizer-watch">
+                <fieldset>
+                  <legend>Assignments completed</legend>
+                  <br>
+                  <br>
+                  <br>
+                  <br>
+                </fieldset>
               </div>
             </div>
-                {{/link-to}}
-          {{/each}}
-          <hr>
-        </li>
-      </ul>
-    </div>
-    <div class="columns small-9">
-      <div class="row">
-        <div class="columns small-3">
-          {{gravatar-image email=match.account.user.email
-            alt=match.account.display_name size=100 default='identicon'}}
+          </div>
         </div>
-        <div class="columns small-9">
-        </div>
-      </div>
+      {{/each}}
     </div>
   </div>
   <hr>
