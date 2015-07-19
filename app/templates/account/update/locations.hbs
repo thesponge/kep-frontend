@@ -1,4 +1,10 @@
 <form id="updatelocations" {{action 'updateLocations' on='submit'}}>
-  <label for="locations">Locations</label>
-  <button id="submit" type="submit" class="pull-right micro">Submit</button>
+  <label for="location">Locations</label>
+  {{input id='location' placeholder='Enter your location'
+          value=model.account.location}}
+  <button id="submit" type="submit" class="pull-right micro">Save</button>
 </form>
+
+<script type="text/javascript">
+    $('#location').jeoCityAutoComplete();
+</script>
