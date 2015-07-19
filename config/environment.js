@@ -20,6 +20,39 @@ module.exports = function(environment) {
       'ember-cli-notifications': {
           includeFontAwesome: true
       },
+    },
+    pace: {
+    
+      // addon-specific options to configure theme 
+      theme: 'flash',
+      color: 'red',
+      
+      // pace-specific options 
+      // learn more on http://github.hubspot.com/pace/#configuration 
+      catchupTime: 50,
+      initialRate: .01,
+      minTime: 100,
+      ghostTime: 50,
+      maxProgressPerFrame: 20,
+      easeFactor: 1.25,
+      startOnPageLoad: true,
+      restartOnPushState: true,
+      restartOnRequestAfter: 500,
+      target: 'body',
+      elements: {
+        checkInterval: 100,
+        selectors: ['body', '.ember-view']
+      },
+      eventLag: {
+        minSamples: 10,
+        sampleCount: 3,
+        lagThreshold: 3
+      },
+      ajax: {
+        trackMethods: ['GET', 'POST', 'DELETE', 'OPTIONS'],
+        trackWebSockets: true,
+        ignoreURLs: []
+      }
     }
   };
 

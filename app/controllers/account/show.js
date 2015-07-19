@@ -1,7 +1,10 @@
 import Ember from 'ember';
+import ENV from "../../config/environment";
 
 
 export default Ember.Controller.extend({
+  apiHost       : ENV.APP.apiHost,
+  apiNamespace  : ENV.APP.apiNamespace,
   showNotification: function(message, type){
     this.get('notifications').addNotification({
       message: message,
@@ -44,6 +47,64 @@ export default Ember.Controller.extend({
     updateAffiliations: function() {
       this.updateAttribute('affiliation_ids');
     },
+    updateLocations: function() {
+      //console.log('model.account.location: ', this.get('model.account.location'));
+      // Split the input CSV address by comma+space sequence
+      var elements = this.get('model.account.location').split(', ');
+      // City is always the first element
+      var city     = elements[0];
+      // Country is last
+      var country  = elements[elements.length - 1];
+      // Remove country and city. If there's anything left, that'd be the state's name
+      elements.splice(elements.indexOf(country), 1);
+      elements.splice(elements.indexOf(city), 1);
+      var state    = elements[0];
+      // Now let's see it works
+      //console.log('country, state, city: ', country, state, city);
+      //console.log('elements: ', elements);
+      //return false;
+
+      var self = this;
+      Ember.run.scheduleOnce('actions', function changeState(){
+        // TODO: better variable interpolation
+        $.ajax({
+          type: "POST",
+          url : self.apiHost + "/" + self.apiNamespace + "/locations",
+          data: '{"location": '
+            +'{'
+              +'"city":    "' + city    + '",'
+              +'"state":   "' + state   + '",'
+              +'"country": "' + country + '"'
+            +'}'
+          +'}',
+          contentType: 'application/json',
+        })
+        .done(function(data){
+          console.log('location_ids ', self.get('model.account'));
+          console.log('data.id ', data.id);
+          self.set('model.account.location_ids', [data.id]);
+          self.get('model.account').save().then(function(){
+            self.showNotification('Success!', 'success');
+            self.get('modal').hide();
+          },
+          function(){
+            self.showNotification('There was an error!', 'error');
+            self.get('modal').hide();
+          });
+        })
+        .fail(function(){
+          alert('Failed!');
+        });
+      });
+      //this.get('model.account').save().then(function(){
+      //  this.showNotification('Success!', 'success');
+      //  this.get('modal').hide();
+      //}.bind(this),
+      //function(){
+      //  this.showNotification('There was an error!', 'error');
+      //  this.get('modal').hide();
+      //}.bind(this));
+    },
 
     addIntentions: function(){
       // save stuff here
@@ -56,16 +117,34 @@ export default Ember.Controller.extend({
       this.modalFor('account/update/intentions');
     },
     saveAddIntentions: function() {
-      console.log("Intention: ", this.get('newIntention'));
+      console.log("Intention: ", this.get('model.account.newIntention'));
       console.log("self: ", this);
       var self = this;
-      self.get('newIntention').save().then(function(){
-        self.notifications.addNotification({
-            message: 'Intention #' + self.get('newIntention').id + ' created!',
-            type: 'success',
-            autoClear: true
+      console.log('newIntention: ', self.get('model.account.newIntention'));
+      Ember.run.scheduleOnce('actions', function changeState(){
+        // TODO: better variable interpolation
+        $.ajax({
+          type: "POST",
+          url : self.apiHost + "/" + self.apiNamespace + "/intentions",
+          data: '{"intention": {'
+            +'"intention":    "' + self.get('model.account.newIntention') + '"'
+            +'} }',
+          contentType: 'application/json',
+        })
+        .done(function(data){
+          self.set('model.account.intention_ids', [data.id]);
+          self.get('model.account').save().then(function(){
+            self.showNotification('Success!', 'success');
+            self.modalFor('account/update/intentions');
+          },
+          function(){
+            self.showNotification('There was an error!', 'error');
+            self.modalFor('account/update/intentions');
+          });
+        })
+        .fail(function(){
+          alert('Failed!');
         });
-        this.modalFor('account/update/intentions');
       });
     },
   },

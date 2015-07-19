@@ -13,6 +13,7 @@ var Account = DS.Model.extend({
   skills          : DS.hasMany('skill', { async : true, embedded : 'always' }),
   intentions      : DS.hasMany('intention', { async : true, embedded : 'always' }),
   affiliations    : DS.hasMany('affiliation', { async : true, embedded : 'always' }),
+  newIntention    : DS.attr(),
   location_ids    : DS.attr(),
   language_ids    : DS.attr(),
   skill_ids       : DS.attr(),

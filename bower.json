@@ -1,7 +1,7 @@
 {
   "name": "kep-ember",
   "dependencies": {
-    "jquery": "^1.11.1",
+    "jquery": "^2.1.4",
     "ember": "1.11.0",
     "ember-data": "1.0.0-beta.18",
     "ember-resolver": "~0.1.15",
@@ -19,10 +19,12 @@
     "ic-modal": "~1.0.0",
     "select2": "~3.5.2",
     "JavaScript-MD5": "~1.1.0",
-    "typeahead-addresspicker": "https://github.com/sgruhier/typeahead-addresspicker.git#~0.1.4"
+    "typeahead-addresspicker": "https://github.com/sgruhier/typeahead-addresspicker.git#~0.1.4",
+    "pace": "vectart/pace#master",
+    "spin.js": "~2.3.1"
   },
   "resolutions": {
-    "jquery": "^1.11.1"
+    "jquery": "^2.1.4"
   },
   "devDependencies": {
     "foundation": "~5.5.1"
