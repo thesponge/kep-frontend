@@ -5,7 +5,11 @@
   {{#link-to 'account.show' usr.account.id}}
     {{gravatar-image email=usr.email
       alt=usr.account.display_name size=30 default='identicon'}}
-    {{usr.account.display_name}}
+    {{#if usr.account.display_name}}
+      {{usr.account.display_name}}
+    {{else}}
+      {{usr.account.fake_display_name}}
+    {{/if}}
   {{/link-to}}
   posted this at 2015-07-11
   </small>

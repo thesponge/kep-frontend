@@ -23,6 +23,13 @@ var Account = DS.Model.extend({
   is_owner: function(){
     var session = this.container.lookup('simple-auth-session:main');
     return this.get('id').toString() === session.content.id.toString();
+  }.property(),
+  fake_display_name : function(){
+    if (this.get('display_name').length < 1) {
+      return this.get('user.email').replace(/@.*\..*$/g, '');
+    } else {
+      return this.get('display_name');
+    }
   }.property()
 });
 
