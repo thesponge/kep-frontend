@@ -1,0 +1,12 @@
+{{!-- Warning! This component *needs* to be passed an account ID in order to work --}}
+
+<span>
+  <small>
+  {{#link-to 'account.show' usr.account.id}}
+    {{gravatar-image email=usr.email
+      alt=usr.account.display_name size=30 default='identicon'}}
+    {{usr.account.display_name}}
+  {{/link-to}}
+  posted this at 2015-07-11
+  </small>
+</span>
