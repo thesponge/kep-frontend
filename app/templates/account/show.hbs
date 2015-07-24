@@ -58,9 +58,9 @@
             </div>
             <div class="avatar-container">
               <div class="avatar">
-                {{gravatar-image email=model.email
-                  alt=model.account.display_name size=150 default='identicon'}}
-                  <p><small><a href="https://en.gravatar.com/emails/" target="_blank">Change your image</a></small></p>
+                {{libravatar-image email=model.email secure=false
+                  alt=model.account.display_name size=150 defaultImage='retro'}}
+                  <p><small><a href="https://www.libravatar.org/account/profile/" target="_blank">Change your image</a></small></p>
               </div>
             </div>
             <br>

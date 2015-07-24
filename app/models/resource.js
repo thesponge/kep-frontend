@@ -5,9 +5,10 @@ var attr = DS.attr;
 var Resource = DS.Model.extend({
   submissionType : 'resource',
   user_id        : attr(),
+  owner          : function(){return this.get('user_id');}.property('user_id'),
   title          : attr('string'),
   description    : attr('string'),
-  intentions     : DS.hasMany('intention', {inverse : 'resource', async : true, embedded : 'always'}),
+  intentions     : DS.hasMany('intention', {async : true, embedded : 'always'}),
   intention_ids  : attr(),
   resource_priority_ids  : attr(),
   description_fragment: function() {

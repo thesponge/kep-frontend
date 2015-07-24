@@ -44,6 +44,9 @@ export default Ember.Controller.extend({
     updateSkills: function() {
       this.updateAttribute('skill_ids');
     },
+    updateLanguages: function() {
+      this.updateAttribute('language_ids');
+    },
     updateAffiliations: function() {
       this.updateAttribute('affiliation_ids');
     },

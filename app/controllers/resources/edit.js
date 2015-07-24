@@ -21,11 +21,13 @@ export default Ember.Controller.extend({
       selected_intentions.forEach(function(item){
         selected_intentions_output.push(item.id);
       });
+      console.log('intention ids: ', selected_intentions_output);
       console.log("Title: ", this.get('resource.title'));
       this.set('resource.title', this.get('resource.title'));
       console.log("Description: ", this.get('resource.description'));
       this.set('resource.description', this.get('resource.description'));
       this.set('resource.intention_ids', selected_intentions_output);
+      console.log('intention ids: ', this.get('resource.intention_ids'));
       //console.log("Travel: ", this.get('resource.travel'));
       //this.set('resource.travel');
       //console.log("Driving license: ", this.get('resource.driver_license'));

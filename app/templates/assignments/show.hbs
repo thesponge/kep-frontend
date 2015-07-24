@@ -4,13 +4,16 @@
   }
 </style>
 
-<div class="row">
-  <div class="small-12 columns">
-    <p class="text-center">
-      {{assignment-timeline state=model.state aid=model.id}}
-    </p>
+{{#if match}}
+{{else}}
+  <div class="row">
+    <div class="small-12 columns">
+      <p class="text-center">
+        {{assignment-timeline state=model.state aid=model.id}}
+      </p>
+    </div>
   </div>
-</div>
+{{/if}}
 <div class="row">
   <div class="small-1 columns">&nbsp;</div>
   <div class="small-10 columns content">
@@ -19,7 +22,7 @@
       <small>
         <span class="label secondary radius"><i>{{model.state}}</i></span>
       </small>
-      <p class="byline"> {{user-byline}} </p>
+      <p class="byline"> {{user-byline modelName="assignment"}} </p>
     </h1>
     {{!--
     <small>by {{outlet 'username'}}</small>
@@ -50,13 +53,16 @@
         {{/if}}
         <button href="#" id="drop1-btn" data-dropdown="drop1" aria-controls="drop1" aria-expanded="false" class="button tiny secondary dropdown pull-right">Actions</button><br>
         <ul id="drop1" data-dropdown-content class="f-dropdown" aria-hidden="true" aria-autoclose="false">
-          <li class="choice-from-dropdown"><a href="#" {{action 'showAutomatchModal'}}>Show automatch users</a></li>
           {{#if model.is_owner}}
+            <li class="choice-from-dropdown"><a href="#" {{action 'showAutomatchModal'}}>Show automatch users</a></li>
             <li class="choice-from-dropdown"><a href="#" {{action 'editAssignment'}}>Edit</a></li>
             {{#confirm-extension questionText='Do you really want to destroy this?' confirmText='Yes' declineText='No' confirmAction='deleteAssignment'}}
               <li class="choice-from-dropdown"><a href="#" >Delete</a></li>
             {{/confirm-extension}}
+          {{else}}
+            <li class="choice-from-dropdown"><a href="#" {{action 'addBid' model.id model.user_id}}>Take assignment</a></li>
           {{/if}}
+
         </ul>
       </div>
     </div>
@@ -96,22 +102,6 @@
           </ul>
         </div>
       </li>
-      <li>
-        <div class="panel radius callout">
-          <span class="list-icon">
-            {{#if model.travel}} {{fa-icon 'check'}}
-            {{else}} {{fa-icon 'close'}} {{/if}}
-          </span>
-          Travel
-          <br>
-          <span class="list-icon">
-            {{#if model.driver_license}} {{fa-icon 'check'}}
-            {{else}} {{fa-icon 'close'}} {{/if}}
-          </span>
-          Driving license
-          <br>
-        </div>
-      </li>
     </ul>
 
     {{!--
@@ -127,31 +117,33 @@
     </div>
     --}}
 
-    {{#if model.is_owner}}
-    {{else}}
-      <div class="row">
-        <div class="small-12 columns">
-          <form id="addbid" {{action 'addBid' on='submit'}}>
-            {{input id='assignment_id' type='hidden' value=model.id}}
-            {{input id='user_id' type='hidden' value=model.user_id}}
-            {{!--<button {{action "addBid"}} class="tiny secondary pull-right">Take assignment</button>--}}
-            <button type="submit" class="tiny secondary pull-right">Take assignment</button>
-          </form>
-        </div>
-      </div>
-    {{/if}}
 
+{{#if match}}
+{{else}}
+  {{#if model.is_owner}}
     <div class="row">
       <div class="small-1 columns">&nbsp;</div>
       <div class="small-10 columns">
         <fieldset>
           <legend>Current bids:</legend>
+            {{#each bid in model.assignment_bids}}
+              <ol>
+                <li>
+                  <p>
+                    User {{bid.user_id}} on assignment {{bid.assignment_id}}
+                  </p>
+                </li>
+              </ol>
+            {{/each}}
         </fieldset>
       </div>
       <div class="small-1 columns">&nbsp;</div>
     </div>
+  {{/if}}
+{{/if}}
   </div>
   <div class="small-1 columns">&nbsp;</div>
+
 
 </div>
 

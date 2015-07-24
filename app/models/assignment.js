@@ -5,6 +5,7 @@ var attr = DS.attr;
 var Assignment = DS.Model.extend({
   submissionType          : 'assignment',
   user_id                 : attr(),
+  owner                   : function(){return this.get('user_id');}.property('user_id'),
   title                   : attr('string'),
   description             : attr('string'),
   state                   : attr('string'),
@@ -13,12 +14,11 @@ var Assignment = DS.Model.extend({
   state                   : attr('string'),
   skills                  : DS.hasMany('skill',            {inverse : 'assignment', async : true, embedded : 'always'}),
   assignment_rewards      : DS.hasMany('assignmentReward', {inverse : 'assignment', async : true, embedded : 'always'}),
-  //automatic_matches: DS.hasMany('score_account_assignments/assignmentMatches', {inverse: 'assignment'}),
-  assignment_matches: DS.hasMany('assignmentMatch', {inverse: 'assignment'}),
-  //assignment_bids: DS.hasMany('assignmentBid', {inverse: 'assignment'}),
+  assignment_bids         : DS.hasMany('assignmentBid',    {inverse : 'assignment', async : true, embedded : 'always'}),
   skill_ids               : attr(),
   assignment_reward_ids   : attr(),
   assignment_priority_ids : attr(),
+  assignment_bid_ids      : attr(),
 
   description_fragment : function() {
     if(this.get('description') !== undefined) {

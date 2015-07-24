@@ -18,7 +18,7 @@
       {{#each match in model}}
         <div class="content" id="panel{{match.id}}">
           <div style="padding-left: 25%;">
-            {{gravatar-image email=match.account.user.email
+            {{libravatar-image email=match.account.user.email secure=false
               alt=match.account.display_name size=100 default='identicon'}}
             {{match.account.display_name}}
             (<a href="mailto:{{match.account.user.email}}">{{match.account.user.email}}</a>)

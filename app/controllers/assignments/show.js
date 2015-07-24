@@ -20,7 +20,7 @@ export default Ember.Controller.extend({
       var self = this;
       self.transitionToRoute('assignments.edit', self.get('model'));
     },
-    addBid: function(model) {
+    addBid: function(assignmentId, userId) {
       var self = this;
 
       var bid = this.store.createRecord('assignmentBid', {

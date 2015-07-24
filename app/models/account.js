@@ -25,10 +25,10 @@ var Account = DS.Model.extend({
     return this.get('id').toString() === session.content.id.toString();
   }.property(),
   fake_display_name : function(){
-    if (this.get('display_name').length < 1) {
-      return this.get('user.email').replace(/@.*\..*$/g, '');
-    } else {
+    if (this.get('display_name')) {
       return this.get('display_name');
+    } else {
+      return this.get('user.email').replace(/@.*$/g, '');
     }
   }.property()
 });

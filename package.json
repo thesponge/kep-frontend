@@ -32,7 +32,7 @@
     "ember-cli-dirty-confirm": "0.0.4",
     "ember-cli-document-title": "0.0.3",
     "ember-cli-font-awesome": "0.0.9",
-    "ember-cli-gravatar": "2.4.2",
+    "ember-cli-libravatar": "3.0.4",
     "ember-cli-htmlbars": "0.7.4",
     "ember-cli-ic-ajax": "0.1.1",
     "ember-cli-inject-live-reload": "^1.3.0",
