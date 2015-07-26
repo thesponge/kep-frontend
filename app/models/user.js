@@ -9,8 +9,10 @@ var User = DS.Model.extend({
   account               : DS.belongsTo ('account'),
   resources             : DS.hasMany('resource', { async : true, embedded : 'always' }),
   assignments           : DS.hasMany('assignment', { async : true, embedded : 'always' }),
+  assignment_bids       : DS.hasMany('assignmentBid', { async : true, embedded : 'always' }),
   resource_ids          : DS.attr(),
   assignment_ids        : DS.attr(),
+  assignment_bid_ids    : DS.attr(),
 });
 
 //User.reopenClass({

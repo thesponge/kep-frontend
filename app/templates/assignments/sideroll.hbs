@@ -1,27 +1,38 @@
 {{#each assignment in model}}
     <li class="post text-left">
-      <div class="row">
-        <div class="columns small-4">
-          {{user-byline modelName='assignment' small=true}}
+      <div class="row small-collapse">
+        <div class="columns small-2 small-offset-1 text-center">
+          {{#link-to 'account.show' assignment.user.account.id}}
+            {{libravatar-image email=assignment.user.email secure=false
+              alt=assignment.user.account.display_name size=36 defaultImage='retro'}}
+          {{/link-to}}
         </div>
-        <div class="columns small-8">
-        {{#link-to "assignments.show" assignment}}
-          <span class="post_title">
-            {{assignment.title}}
-            <br>
-            <small> {{cut-string 30 "Lorem ipsum description here"}} </small>
-          </span>
-          <span class="left_icons">
-            {{#each type in assignment.assignment_types}}
-              {{fa-icon type.icon}}
-            {{/each}}
-           </span>
-          <span class="right_icons">
-            {{#each reward in assignment.assignment_reward}}
-              {{fa-icon reward.icon}}
-            {{/each}}
-          </span>
-        {{/link-to}}
+        <div class="columns small-9">
+          {{#link-to "assignments.show" assignment}}
+            <h6 class="post_title">
+              {{assignment.title}}
+            </h6>
+          {{/link-to}}
+          {{#link-to 'account.show' assignment.user.account.id}}
+            <p class="byline">
+              <small>
+                posted by {{assignment.user.account.computed_display_name}}
+              </small>
+            </p>
+          {{/link-to}}
+        </div>
+        <div class="columns small-1">
+        </div>
+      </div>
+      <div class="row">
+        <div class="columns small-12">
+          {{#link-to "assignments.show" assignment}}
+          <p class="description">
+            <blockquote style="padding-top: .2em !important;">
+              {{cut-string assignment.description length=80}} 
+            </blockquote>
+          </p>
+          {{/link-to}}
         </div>
       </div>
     </li>

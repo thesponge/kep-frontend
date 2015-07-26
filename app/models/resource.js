@@ -4,10 +4,9 @@ var attr = DS.attr;
 
 var Resource = DS.Model.extend({
   submissionType : 'resource',
-  user_id        : attr(),
-  owner          : function(){return this.get('user_id');}.property('user_id'),
   title          : attr('string'),
   description    : attr('string'),
+  user           : DS.belongsTo('user', {inverse: 'resources', async: true}),
   intentions     : DS.hasMany('intention', {async : true, embedded : 'always'}),
   intention_ids  : attr(),
   resource_priority_ids  : attr(),
@@ -20,7 +19,7 @@ var Resource = DS.Model.extend({
   }.property('description'),
   is_owner: function(){
     var session = this.container.lookup('simple-auth-session:main');
-    return this.get('user_id') === session.content.id;
+    return parseInt(this.get('user.id')) === session.content.id;
   }.property(),
   intentions_select2: function() {
     var output = [];

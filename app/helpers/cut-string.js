@@ -1,10 +1,10 @@
 import Ember from 'ember';
 
-export function cutString(length, context, options) {
- if ( context.length > length ) {
-  return context.substring(0, length) + "...";
+export function cutString(text, length, options) {
+ if ( String(text).length > length.length ) {
+   return String(text).substring(0, length.length) + " ...";
  } else {
-  return context;
+   return text;
  }
 }
 

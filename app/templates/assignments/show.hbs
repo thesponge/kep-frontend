@@ -22,7 +22,18 @@
       <small>
         <span class="label secondary radius"><i>{{model.state}}</i></span>
       </small>
-      <p class="byline"> {{user-byline modelName="assignment"}} </p>
+      <p class="byline"> 
+        <span>
+          <small>
+          {{#link-to 'account.show' model.user.account.id}}
+            {{libravatar-image email=model.user.email secure=false
+              alt=model.user.account.display_name size=30 defaultImage='retro'}}
+            {{model.user.account.computed_display_name}}
+          {{/link-to}}
+          posted this at 2015-07-11
+          </small>
+        </span>
+      </p>
     </h1>
     {{!--
     <small>by {{outlet 'username'}}</small>
@@ -60,7 +71,7 @@
               <li class="choice-from-dropdown"><a href="#" >Delete</a></li>
             {{/confirm-extension}}
           {{else}}
-            <li class="choice-from-dropdown"><a href="#" {{action 'addBid' model.id model.user_id}}>Take assignment</a></li>
+            <li class="choice-from-dropdown"><a href="#" {{action 'addBid'}}>Take assignment</a></li>
           {{/if}}
 
         </ul>
@@ -120,17 +131,24 @@
 
 {{#if match}}
 {{else}}
-  {{#if model.is_owner}}
     <div class="row">
       <div class="small-1 columns">&nbsp;</div>
       <div class="small-10 columns">
         <fieldset>
           <legend>Current bids:</legend>
             {{#each bid in model.assignment_bids}}
-              <ol>
+              <ol class="assignment-bid-list">
                 <li>
+                  <b>{{_view.contentIndex}}. </b>
+                  {{#link-to 'account.show' bid.user.account.id}}
+                    {{libravatar-image email=bid.user.email secure=false
+                      alt=bid.user.account.computed_display_name size=50 defaultImage='retro'}}
+                  {{/link-to}}
                   <p>
-                    User {{bid.user_id}} on assignment {{bid.assignment_id}}
+                    {{#link-to 'account.show' bid.user.account.id}}
+                      {{bid.user.account.computed_display_name}}
+                    {{/link-to}}
+                    <small>on {{bid.computed_date}} at {{bid.computed_time}}</small>
                   </p>
                 </li>
               </ol>
@@ -139,7 +157,6 @@
       </div>
       <div class="small-1 columns">&nbsp;</div>
     </div>
-  {{/if}}
 {{/if}}
   </div>
   <div class="small-1 columns">&nbsp;</div>

@@ -4,14 +4,13 @@ var attr = DS.attr;
 
 var Assignment = DS.Model.extend({
   submissionType          : 'assignment',
-  user_id                 : attr(),
-  owner                   : function(){return this.get('user_id');}.property('user_id'),
   title                   : attr('string'),
   description             : attr('string'),
   state                   : attr('string'),
   travel                  : attr('string'),
   driver_license          : attr('string'),
   state                   : attr('string'),
+  user                    : DS.belongsTo('user', {inverse: 'assignments', async: true}),
   skills                  : DS.hasMany('skill',            {inverse : 'assignment', async : true, embedded : 'always'}),
   assignment_rewards      : DS.hasMany('assignmentReward', {inverse : 'assignment', async : true, embedded : 'always'}),
   assignment_bids         : DS.hasMany('assignmentBid',    {inverse : 'assignment', async : true, embedded : 'always'}),
@@ -30,8 +29,9 @@ var Assignment = DS.Model.extend({
 
   is_owner: function(){
     var session = this.container.lookup('simple-auth-session:main');
-    return this.get('user_id') === session.content.id;
-  }.property(),
+    //console.log('user: ', this.get('user.id'));
+    return parseInt(this.get('user.id')) === session.content.id;
+  }.property('user.id'),
 
   rewards_select2: function() {
     var output = [];

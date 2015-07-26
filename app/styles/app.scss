@@ -132,11 +132,11 @@ ul.roll {
   margin: 0px auto;
   background-color: $kep-rollbackground;
   /*margin-top: 25px;*/
-  > a li.post {
+  li.post {
     min-height: 100px;
     color: #555;
     background-color: $kep-postbase;
-    padding: 10px 8px 25px 8px;
+    padding: 10px 8px 0px 8px;
     position: relative;
     border-bottom: 1px dashed #cccccc;
     &:hover {
@@ -144,33 +144,23 @@ ul.roll {
       cursor: pointer;
       color: #222;
     }
-    > span {
-      display: block;
-      &.post_title {
-        /*font-weight: bold;*/
-        font-size: .8em;
-        margin-bottom: 10px;
-      }
-      &.post_excerpt {
-        font-size: .8em;
-        padding: 3px 0px;
-        font-style: oblique;
-      }
-      &.left_icons {
-        position: absolute;
-        left: 10px;
-        bottom: 5px;
-        i.fa {
-          display: inline-block;
-          width: 1em;
-          text-align: center;
-        }
-      }
-      &.right_icons {
-        position: absolute;
-        right: 10px;
-        bottom: 5px;
-      }
+    libravatar-image {
+      margin: 0px auto;
+    }
+    h6.post_title {
+      font-weight: bold;
+      font-size: .8em;
+      margin-left: 10px !important;
+      margin-top: 0px !important;
+      margin-bottom: 0px !important;
+      line-height: 1 !important;
+    }
+    p.byline {
+      margin-left: 10px !important;
+      margin-bottom: 3px !important;
+    }
+    p.description {
+      font-size: .8em;
     }
     .description-trigger {
       position: relative;
@@ -226,6 +216,35 @@ div.content {
   }
 }
 
+ol.assignment-bid-list {
+  li {
+    height: 50px;
+    display: table;
+    >*{
+      display: table-cell;
+      vertical-align: middle;
+    }
+    >b {
+      font-size: 1em;
+      padding-right: 10px;
+    }
+    >a {
+      /*display: inline-block;*/
+      margin-top: 0px;
+      clear: both;
+      >img {
+        border-radius: 5px;
+      }
+    }
+    >p {
+      /*display: inline-block;*/
+      padding-left: 10px;
+      >small{
+        display: block;
+      }
+    }
+  }
+}
 
 /* Start profile page stuff */
 div.profile{

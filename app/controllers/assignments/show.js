@@ -20,11 +20,12 @@ export default Ember.Controller.extend({
       var self = this;
       self.transitionToRoute('assignments.edit', self.get('model'));
     },
-    addBid: function(assignmentId, userId) {
+    addBid: function() {
       var self = this;
 
       var bid = this.store.createRecord('assignmentBid', {
         assignment_id: this.get('model.id'),
+        chosen: false
       })
       bid.save().then(function() {
         console.log('Saved!');
@@ -34,6 +35,24 @@ export default Ember.Controller.extend({
             type: 'success',
             autoClear: true
         });
+        assignment = this.get('controllers.assignmentsShow.content');
+        assignment.get('assignment_bids').addObject(bid);
+        assignment.save().then(function(){
+            console.log('Assignment updated!');
+            self.notifications.addNotification({
+                message: 'Assignment updated!',
+                type: 'success',
+                autoClear: true
+            });
+          },
+          function(error){
+            self.notifications.addNotification({
+                message: 'Assignment not updated!',
+                type: 'error',
+                autoClear: true
+            });
+          }
+        )
       },
       function(response) {
         console.error('There was a problem', response);

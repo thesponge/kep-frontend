@@ -24,7 +24,7 @@ var Account = DS.Model.extend({
     var session = this.container.lookup('simple-auth-session:main');
     return this.get('id').toString() === session.content.id.toString();
   }.property(),
-  fake_display_name : function(){
+  computed_display_name : function(){
     if (this.get('display_name')) {
       return this.get('display_name');
     } else {
