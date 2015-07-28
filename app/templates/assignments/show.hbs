@@ -136,6 +136,30 @@
       <div class="small-10 columns">
         <fieldset>
           <legend>Current bids:</legend>
+          {{#if model.is_owner}}
+            <form id="choosebids" {{action 'chooseBids' on='submit'}}>
+              {{#each bid in model.assignment_bids}}
+                <ol class="assignment-bid-list">
+                  <li>
+                    <b>{{_view.contentIndex}}. </b>
+                    {{#link-to 'account.show' bid.user.account.id}}
+                      {{libravatar-image email=bid.user.email secure=false
+                        alt=bid.user.account.computed_display_name size=50 defaultImage='retro'}}
+                    {{/link-to}}
+                    <p>
+                      {{#link-to 'account.show' bid.user.account.id}}
+                        {{bid.user.account.computed_display_name}}
+                      {{/link-to}}
+                      <small>on {{bid.computed_date}} at {{bid.computed_time}}</small>
+                    </p>
+                    {{x-toggle toggle="toggleBid" theme="skewed" on="choose" off="ignore" class="pull-right"}}
+                  </li>
+                </ol>
+              {{/each}}
+              <br>
+              <button id="submit" type="submit" class="tiny pull-right">Get started!</button>
+            </form>
+          {{else}}
             {{#each bid in model.assignment_bids}}
               <ol class="assignment-bid-list">
                 <li>
@@ -153,6 +177,7 @@
                 </li>
               </ol>
             {{/each}}
+          {{/if}}
         </fieldset>
       </div>
       <div class="small-1 columns">&nbsp;</div>

@@ -21,6 +21,14 @@ module.exports = function(environment) {
           includeFontAwesome: true
       },
     },
+    'ember-cli-toggle': {
+      includedThemes: ['light', 'default', 'flip', 'skewed'],
+      defaultShowLabels: false, // defaults to false 
+      defaultTheme: 'default',   // defaults to 'default' 
+      defaultSize: 'small',    // defaults to 'medium' 
+      defaultOff: 'True',     // defaults to 'Off' 
+      defaultOn: 'False'        // defaults to 'On' 
+    },
     pace: {
     
       // addon-specific options to configure theme 

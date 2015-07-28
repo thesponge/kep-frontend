@@ -69,6 +69,9 @@ export default Ember.Controller.extend({
         });
       });
     },
+    toggleBid: function() {
+      console.log('toggleBid called');
+    },
   },
   setupController: function(controller, model) {
   //  model.reload();
