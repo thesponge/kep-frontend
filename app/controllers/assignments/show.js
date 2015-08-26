@@ -70,7 +70,11 @@ export default Ember.Controller.extend({
       });
     },
     toggleBid: function() {
-      console.log('toggleBid called');
+      if (!Ember.$('span.x-toggle-container-checked').length) {
+        Ember.$('.bid-choose-submit').show();
+      } else {
+        Ember.$('.bid-choose-submit').hide();
+      }
     },
   },
   setupController: function(controller, model) {

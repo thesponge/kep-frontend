@@ -152,13 +152,16 @@
                       {{/link-to}}
                       <small>on {{bid.computed_date}} at {{bid.computed_time}}</small>
                     </p>
-                    {{x-toggle toggle="toggleBid" theme="skewed" on="choose" off="ignore" class="pull-right"}}
+                    {{x-toggle toggle="toggleBid" value=bid.chosen theme="flat" size="medium" class="pull-right"}}
                   </li>
                 </ol>
               {{/each}}
               <br>
-              <button id="submit" type="submit" class="tiny pull-right">Get started!</button>
+              <button id="submit" type="submit" class="hide tiny pull-right bid-choose-submit" style="display: none;">Get started!</button>
             </form>
+            <script type="text/javascript">
+              $('.bid-choose-submit').hide();
+            </script>
           {{else}}
             {{#each bid in model.assignment_bids}}
               <ol class="assignment-bid-list">
@@ -208,3 +211,4 @@
 </div>
 
 {{outlet}}
+

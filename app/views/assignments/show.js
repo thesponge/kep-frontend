@@ -3,6 +3,10 @@ import Ember from 'ember';
 export default Ember.View.extend({
   didInsertElement: function() {
     this._super();
+    //Ember.run.scheduleOnce('afterRender', this, function(){
+      ////Ember.$('.bid-choose-submit').hide();
+      //Ember.$('.bid-choose-submit').attr('styles', "display: none;");
+    //});
     //alert('blaaa');
     //Ember.run.scheduleOnce('afterRender', this, function(){
     //  var self = this;

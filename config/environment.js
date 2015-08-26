@@ -25,16 +25,14 @@ module.exports = function(environment) {
       includedThemes: ['light', 'default', 'flip', 'skewed'],
       defaultShowLabels: false, // defaults to false 
       defaultTheme: 'default',   // defaults to 'default' 
-      defaultSize: 'small',    // defaults to 'medium' 
-      defaultOff: 'True',     // defaults to 'Off' 
-      defaultOn: 'False'        // defaults to 'On' 
+      //defaultOff: 'True',     // defaults to 'Off' 
+      //defaultOn: 'False',        // defaults to 'On' 
+      defaultSize: 'small'    // defaults to 'medium' 
     },
     pace: {
-    
       // addon-specific options to configure theme 
       theme: 'flash',
       color: 'red',
-      
       // pace-specific options 
       // learn more on http://github.hubspot.com/pace/#configuration 
       catchupTime: 50,

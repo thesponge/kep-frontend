@@ -22,6 +22,7 @@ Ember.View.reopen({
   afterRenderEvent : function(){
     //Foundation.global.namespace = '';
     Ember.$(document).foundation();
+    Ember.$('.bid-choose-submit').hide();
   }
 });
 
