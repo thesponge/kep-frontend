@@ -24,7 +24,7 @@
     "broccoli-merge-trees": "^0.2.1",
     "broccoli-sass": "git://github.com/ef4/broccoli-sass",
     "broccoli-unwatched-tree": "^0.1.1",
-    "ember-cli": "1.13.1",
+    "ember-cli": "1.13.5",
     "ember-cli-app-version": "0.4.0",
     "ember-cli-babel": "^5.0.0",
     "ember-cli-content-security-policy": "0.4.0",
@@ -41,15 +41,15 @@
     "ember-cli-notifications": "2.1.2",
     "ember-cli-pace": "0.0.15",
     "ember-cli-pretender": "0.3.1",
-    "ember-cli-qunit": "0.3.15",
+    "ember-cli-qunit": "0.3.18",
     "ember-cli-release": "0.2.3",
     "ember-cli-simple-auth": "~0.7.3",
     "ember-cli-simple-auth-devise": "~0.7.3",
+    "ember-cli-sri": "^1.0.1",
     "ember-cli-toggle": "^0.5.11",
     "ember-cli-tooltip": "^0.2.1",
     "ember-cli-uglify": "^1.0.1",
     "ember-confirm-extension": "0.0.3",
-    "ember-data": "1.13.5",
     "ember-devtools": "^3.0.4",
     "ember-foundation": "^0.7.2",
     "ember-modals": "0.3.6",
@@ -64,7 +64,8 @@
     "rimraf": "2.2.8"
   },
   "dependencies": {
+    "ember-data": "1.13.7",
     "ember-disable-proxy-controllers": "^1.0.0",
-    "ember-export-application-global": "^1.0.2"
+    "ember-export-application-global": "^1.0.3"
   }
 }
