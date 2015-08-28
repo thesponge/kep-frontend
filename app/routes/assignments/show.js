@@ -111,7 +111,7 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
               reject(new Error('getJSON: `' + url + '` failed with status: [' + this.status + ']'));
             }
           }
-        };
+        }
       });
     }
   },

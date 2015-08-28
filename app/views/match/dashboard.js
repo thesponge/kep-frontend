@@ -22,6 +22,6 @@ export default Ember.View.extend({
     //      Ember.$('ul.roll').height(window.innerHeight - 200);
     //    }
     //  });
-    })
+    });
   }
 });

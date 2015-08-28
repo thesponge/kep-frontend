@@ -9,7 +9,6 @@ var Assignment = DS.Model.extend({
   state                   : attr('string'),
   travel                  : attr('string'),
   driver_license          : attr('string'),
-  state                   : attr('string'),
   user                    : DS.belongsTo('user', {inverse: 'assignments', async: true}),
   skills                  : DS.hasMany('skill',            {inverse : 'assignment', async : true, embedded : 'always'}),
   assignment_rewards      : DS.hasMany('assignmentReward', {inverse : 'assignment', async : true, embedded : 'always'}),
@@ -75,8 +74,8 @@ var Assignment = DS.Model.extend({
   }.property('assignment_rewards'),
 
   progressable: function(){
-    var s = this.get('state');
-    if (s != 'draft' || s != 'closed' || s != 'completed') {
+    var s = this.get('state') + "";
+    if (s !== 'draft' || s !== 'closed' || s !== 'completed') {
       return true;
     } else {
       return false;

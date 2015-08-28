@@ -70,16 +70,16 @@ export default Ember.Controller.extend({
       var self = this;
       Ember.run.scheduleOnce('actions', function changeState(){
         // TODO: better variable interpolation
-        $.ajax({
+        Ember.$.ajax({
           type: "POST",
           url : self.apiHost + "/" + self.apiNamespace + "/locations",
-          data: '{"location": '
-            +'{'
-              +'"city":    "' + city    + '",'
-              +'"state":   "' + state   + '",'
-              +'"country": "' + country + '"'
-            +'}'
-          +'}',
+          data: '{"location": ' +
+            '{' +
+              '"city":    "' + city    + '",' +
+              '"state":   "' + state   + '",' +
+              '"country": "' + country + '"' +
+            '}' +
+          '}',
           contentType: 'application/json',
         })
         .done(function(data){
@@ -126,12 +126,12 @@ export default Ember.Controller.extend({
       console.log('newIntention: ', self.get('model.account.newIntention'));
       Ember.run.scheduleOnce('actions', function changeState(){
         // TODO: better variable interpolation
-        $.ajax({
+        Ember.$.ajax({
           type: "POST",
           url : self.apiHost + "/" + self.apiNamespace + "/intentions",
-          data: '{"intention": {'
-            +'"intention":    "' + self.get('model.account.newIntention') + '"'
-            +'} }',
+          data: '{"intention": {' +
+            '"intention":    "' + self.get('model.account.newIntention') + '"' +
+            '} }',
           contentType: 'application/json',
         })
         .done(function(data){
@@ -188,7 +188,7 @@ export default Ember.Controller.extend({
             });
 
         if (filter.length === 0) {
-          output.push({ 
+          output.push({
             text: item.get('category'),
             children:[
               {

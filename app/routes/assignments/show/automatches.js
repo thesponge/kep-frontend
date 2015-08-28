@@ -26,7 +26,7 @@ export default Ember.Route.extend({
       //.fail(function(){
       //  alert('Failed!');
       //});
-      $.getJSON(self.host + "/" + self.namespace + "/score_account_assignments/assignment_matches?assignment_id=" + self.assignment_id)
+      Ember.$.getJSON(self.host + "/" + self.namespace + "/score_account_assignments/assignment_matches?assignment_id=" + self.assignment_id)
       .then(function(data){
         //self.matches = data.score_account_assignments;
         controller.set('model', data.score_account_assignments);

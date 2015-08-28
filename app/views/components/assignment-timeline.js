@@ -5,6 +5,6 @@ export default Ember.View.extend({
     this._super();
     Ember.run.scheduleOnce('afterRender', this, function(){
       alert('timeline view!');
-    })
+    });
   }
 });

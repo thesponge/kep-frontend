@@ -12,12 +12,12 @@ export default Ember.Component.extend({
     stateChange: function(event) {
       var self = this;
       Ember.run.scheduleOnce('actions', function changeState(){
-        $.ajax({
+        Ember.$.ajax({
           type: "PATCH",
           url: self.host + "/" + self.namespace + "/resources/" + self.aid + "/state?event=" + event,
         })
         .done(function(data){
-          //console.log($.parseJSON(data));
+          console.log(Ember.$.parseJSON(data).length);
         })
         .fail(function(){
           alert('Failed!');

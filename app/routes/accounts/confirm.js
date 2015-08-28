@@ -5,7 +5,7 @@ import ENV from "../../config/environment";
 export default Ember.Route.extend({
   queryParams: {
     confirmation_token: {
-    } 
+    }
   },
   model: function(params) {
     var token = params.confirmation_token;
@@ -15,7 +15,7 @@ export default Ember.Route.extend({
       url: ENV.APP.apiHost + '/users/confirmation?confirmation_token=' + token
     });
     req.then(function(result){
-      //console.log('Response from Rails', result.response);
+      console.log('Response from Rails', result.response);
       self.notifications.addNotification({
         message: 'Your account is now activated!',
         type: 'success',

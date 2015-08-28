@@ -26,7 +26,7 @@ export default Ember.Controller.extend({
       var bid = this.store.createRecord('assignmentBid', {
         assignment_id: this.get('model.id'),
         chosen: false
-      })
+      });
       bid.save().then(function() {
         console.log('Saved!');
         console.log('bid: ', bid);
@@ -35,7 +35,7 @@ export default Ember.Controller.extend({
             type: 'success',
             autoClear: true
         });
-        assignment = this.get('controllers.assignmentsShow.content');
+        var assignment = this.get('controllers.assignmentsShow.content');
         assignment.get('assignment_bids').addObject(bid);
         assignment.save().then(function(){
             console.log('Assignment updated!');
@@ -51,8 +51,9 @@ export default Ember.Controller.extend({
                 type: 'error',
                 autoClear: true
             });
+            console.log("Oops, we have an error: ", error);
           }
-        )
+        );
       },
       function(response) {
         console.error('There was a problem', response);
