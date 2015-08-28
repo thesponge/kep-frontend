@@ -4,7 +4,7 @@
   <div class="small-3 columns">&nbsp;</div>
   <div class="small-6 columns">
   <div class="notifications-container">
-      {{#each notification in notifications}}
+      {{#each notifications as |notification|}}
           {{notification-message notification=notification}}
       {{/each}}
   </div>
@@ -12,7 +12,7 @@
     {{#each flashes.queue as |flash|}}
       {{flash-message flash=flash messageStyle='foundation' class='radius'}}
     {{/each}}
-  
+
     <label for="identification">Login</label>
     {{input id='identification' placeholder='Enter Login' name='email'
             value=identification}}

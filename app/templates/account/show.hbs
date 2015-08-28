@@ -40,7 +40,7 @@
             <a {{action 'modalFor' 'account/update/locations'}}>{{fa-icon 'edit'}}</a>
           {{/if}}
           <ul>
-            {{#each location in model.account.locations}}
+            {{#each model.account.locations as |location|}}
               <li>{{location.city}}, {{location.country}}</li>
             {{/each}}
           </ul>
@@ -70,7 +70,7 @@
                 <a {{action 'modalFor' 'account/update/affiliations'}}>{{fa-icon 'edit'}}</a>
               {{/if}}
               <ul class="affiliations">
-                {{#each affiliation in model.account.affiliations}}
+                {{#each model.account.affiliations as |affiliation|}}
                   <li>
                     <a {{bind-attr href=affiliaton.link}}>
                       {{affiliation.affiliation}}
@@ -92,7 +92,7 @@
                 <a {{action 'modalFor' 'account/update/skills'}}>{{fa-icon 'edit'}}</a>
               {{/if}}
               <ul class="skills">
-                {{#each skill in model.account.skills}}
+                {{#each model.account.skills as |skill|}}
                   {{skill.name}}
                   ({{skill.category}})
                 {{/each}}
@@ -109,7 +109,7 @@
                 <a {{action 'modalFor' 'account/update/languages'}}>{{fa-icon 'edit'}}</a>
               {{/if}}
               <ul class="languages">
-                {{#each language in model.account.languages}}
+                {{#each model.account.languages as |language|}}
                   <li>{{language.common}}</li>
                 {{/each}}
                 {{!--
@@ -125,7 +125,7 @@
                 <a {{action 'modalFor' 'account/update/intentions'}}>{{fa-icon 'edit'}}</a>
               {{/if}}
               <ul class="intentions">
-                {{#each intention in model.account.intentions}}
+                {{#each model.account.intentions as |intention|}}
                   <li>{{intention.intention}}</li>
                 {{/each}}
                 {{!--
@@ -147,7 +147,7 @@
           <li class="resources">
             <span class="label secondary">Resources shared:</span>
             <ul>
-              {{#each resource in model.resources}}
+              {{#each model.resources as |resource|}}
                 <li>
                   {{#link-to 'resources.show' resource.id}}{{resource.title}}{{/link-to}}
                 </li>
@@ -157,7 +157,7 @@
           <li class="assignments">
             <span class="label secondary">Assignments offered:</span>
             <ul>
-              {{#each assignment in model.assignments}}
+              {{#each model.assignments as |assignment|}}
                 <li>
                   {{#link-to 'assignments.show' assignment.id}}{{assignment.title}}{{/link-to}}
                 </li>

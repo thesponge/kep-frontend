@@ -14,7 +14,7 @@
       <li>
         <div class="panel radius callout">
           <ul>
-            {{#each type in model.assignment_types}}
+            {{#each model.assignment_types as |type|}}
             <li><span class="list-icon">{{fa-icon type.icon}}</span> {{type.option}} <small>({{type.category}})</small></li>
             {{/each}}
           </ul>

@@ -1,7 +1,7 @@
 {{partial 'p-navbar'}}
 
   <div class="notifications-container">
-      {{#each notification in notifications}}
+      {{#each notifications as |notification|}}
           {{notification-message notification=notification}}
       {{/each}}
   </div>

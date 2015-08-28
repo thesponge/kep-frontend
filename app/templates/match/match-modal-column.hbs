@@ -20,16 +20,16 @@
   <li class="bullet-item">
     <ul>
       {{#if model.assignment_types}}
-        {{#each type in model.assignment_types}} <li>
-            <span class="list-icon"> {{fa-icon type.icon}} </span> 
-            {{type.option}} 
+        {{#each model.assignment_types as |type|}} <li>
+            <span class="list-icon"> {{fa-icon type.icon}} </span>
+            {{type.option}}
             <small> ({{type.category}})</small>
         </li> {{/each}}
       {{/if}}
       {{#if model.resource_types}}
-        {{#each type in model.assignment_types}} <li>
-            <span class="list-icon"> {{fa-icon type.icon}} </span> 
-            {{type.option}} 
+        {{#each model.assignment_types as |type|}} <li>
+            <span class="list-icon"> {{fa-icon type.icon}} </span>
+            {{type.option}}
             <small> ({{type.category}})</small>
         </li> {{/each}}
       {{/if}}
@@ -37,15 +37,15 @@
   </li>
   <li class="bullet-item">
       {{#if model.assignment_rewards}}
-        {{#each reward in model.assignment_rewards}} <li>
-          <span class="list-icon"> {{fa-icon reward.icon}} </span> 
-          {{reward.reward}} 
+        {{#each model.assignment_rewards as |reward|}} <li>
+          <span class="list-icon"> {{fa-icon reward.icon}} </span>
+          {{reward.reward}}
         </li> {{/each}}
       {{/if}}
       {{#if model.resource_rewards}}
-        {{#each reward in model.assignment_rewards}} <li>
-          <span class="list-icon"> {{fa-icon reward.icon}} </span> 
-          {{reward.reward}} 
+        {{#each model.assignment_rewards as |reward|}} <li>
+          <span class="list-icon"> {{fa-icon reward.icon}} </span>
+          {{reward.reward}}
         </li> {{/each}}
       {{/if}}
   </li>

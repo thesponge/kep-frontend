@@ -22,7 +22,7 @@
       <small>
         <span class="label secondary radius"><i>{{model.state}}</i></span>
       </small>
-      <p class="byline"> 
+      <p class="byline">
         <span>
           <small>
           {{#link-to 'account.show' model.user.account.id}}
@@ -87,12 +87,12 @@
       <li>
         <div class="panel radius callout">
           <ul>
-            {{#each skill in model.skills}}
+            {{#each model.skills as |skill|}}
               <li>
                 <span class="list-icon">
                   {{fa-icon skill.icon}}
-                </span> 
-                {{skill.name}} 
+                </span>
+                {{skill.name}}
                 <small> ({{skill.category}})</small>
               </li>
             {{/each}}
@@ -102,12 +102,12 @@
       <li>
         <div class="panel radius callout">
           <ul>
-            {{#each reward in model.assignment_rewards}}
+            {{#each model.assignment_rewards as |reward|}}
               <li>
                 <span class="list-icon">
                   {{fa-icon reward.icon}}
-                </span> 
-                {{reward.reward}} 
+                </span>
+                {{reward.reward}}
               </li>
             {{/each}}
           </ul>
@@ -138,7 +138,7 @@
           <legend>Current bids:</legend>
           {{#if model.is_owner}}
             <form id="choosebids" {{action 'chooseBids' on='submit'}}>
-              {{#each bid in model.assignment_bids}}
+              {{#each model.assignment_bids as |bid|}}
                 <ol class="assignment-bid-list">
                   <li>
                     <b>{{_view.contentIndex}}. </b>
@@ -163,7 +163,7 @@
               $('.bid-choose-submit').hide();
             </script>
           {{else}}
-            {{#each bid in model.assignment_bids}}
+            {{#each model.assignment_bids as |bid|}}
               <ol class="assignment-bid-list">
                 <li>
                   <b>{{_view.contentIndex}}. </b>

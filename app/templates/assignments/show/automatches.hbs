@@ -1,7 +1,7 @@
 <div id="myModal" class="reveal-modal automatch-ui" data-reveal aria-labelledby="modalTitle" aria-hidden="false" role="dialog">
   <div class="row">
     <ul class="tabs vertical" data-tab style="height: 400px; overflow: auto;">
-      {{#each match in model}}
+      {{#each model as |match|}}
         <li class="tab-title">
           <a href="#panel{{match.id}}" style="padding: 20px 3px 20px 30px;">
             {{#if match.account.display_name}}
@@ -15,7 +15,7 @@
       {{/each}}
     </ul>
     <div class="tabs-content" style="height: 400px;">
-      {{#each match in model}}
+      {{#each model as |match|}}
         <div class="content" id="panel{{match.id}}">
           <div style="padding-left: 25%;">
             {{libravatar-image email=match.account.user.email secure=false

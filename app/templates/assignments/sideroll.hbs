@@ -1,4 +1,4 @@
-{{#each assignment in model}}
+{{#each model as |assignment|}}
     <li class="post text-left">
       <div class="row small-collapse">
         <div class="columns small-2 small-offset-1 text-center">
@@ -29,7 +29,7 @@
           {{#link-to "assignments.show" assignment}}
           <p class="description">
             <blockquote style="padding-top: .2em !important;">
-              {{cut-string assignment.description length=80}} 
+              {{cut-string assignment.description length=80}}
             </blockquote>
           </p>
           {{/link-to}}

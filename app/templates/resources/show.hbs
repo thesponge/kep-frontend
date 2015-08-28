@@ -22,7 +22,7 @@
       <small>
         <span class="label secondary radius"><i>{{model.state}}</i></span>
       </small>
-      <p class="byline"> 
+      <p class="byline">
         <span>
           <small>
           {{#link-to 'account.show' model.user.account.id}}
@@ -83,7 +83,7 @@
       <li>
         <div class="panel radius callout">
           <ul>
-            {{#each intention in model.intentions}}
+            {{#each model.intentions as |intention|}}
               <li>
                 {{intention.intention}}
               </li>
@@ -94,12 +94,12 @@
       <li>
         <div class="panel radius callout">
           <ul>
-            {{#each reward in model.resource_rewards}}
+            {{#each model.resource_rewards as |reward|}}
               <li>
                 <span class="list-icon">
                   {{fa-icon reward.icon}}
-                </span> 
-                {{reward.reward}} 
+                </span>
+                {{reward.reward}}
               </li>
             {{/each}}
           </ul>

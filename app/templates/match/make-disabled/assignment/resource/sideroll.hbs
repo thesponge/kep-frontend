@@ -1,4 +1,4 @@
-{{#each resource in model}}
+{{#each model as |resource|}}
   {{#link-to "match.assignment.show.resource.show" resource}}
     <li class="post text-center">
       <span class="post_title">
@@ -9,12 +9,12 @@
         {{resource.title}}
       </span>
       <span class="left_icons">
-        {{#each type in resource.resource_types}}
+        {{#each resource.resource_types as |type|}}
           {{fa-icon type.icon}}
         {{/each}}
        </span>
       <span class="right_icons">
-        {{#each reward in resource.resource_reward}}
+        {{#each resource.resource_reward as |reward|}}
           {{fa-icon reward.icon}}
         {{/each}}
        </span>
