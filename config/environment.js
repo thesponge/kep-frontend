@@ -23,18 +23,18 @@ module.exports = function(environment) {
     },
     'ember-cli-toggle': {
       includedThemes: ['light', 'default', 'flip', 'skewed'],
-      defaultShowLabels: false, // defaults to false 
-      defaultTheme: 'default',   // defaults to 'default' 
-      //defaultOff: 'True',     // defaults to 'Off' 
-      //defaultOn: 'False',        // defaults to 'On' 
-      defaultSize: 'small'    // defaults to 'medium' 
+      defaultShowLabels: false, // defaults to false
+      defaultTheme: 'default',   // defaults to 'default'
+      //defaultOff: 'True',     // defaults to 'Off'
+      //defaultOn: 'False',        // defaults to 'On'
+      defaultSize: 'small'    // defaults to 'medium'
     },
     pace: {
-      // addon-specific options to configure theme 
+      // addon-specific options to configure theme
       theme: 'flash',
       color: 'red',
-      // pace-specific options 
-      // learn more on http://github.hubspot.com/pace/#configuration 
+      // pace-specific options
+      // learn more on http://github.hubspot.com/pace/#configuration
       catchupTime: 50,
       initialRate: .01,
       minTime: 100,
@@ -114,11 +114,6 @@ module.exports = function(environment) {
     'style-src': "'self' 'unsafe-inline' http://fonts.googleapis.com",
     'media-src': "'self'",
     'report-uri': "http://localhost:4200"
-  }
-  ENV.sassOptions = {
-    //includePaths: [
-      //'bower_components/foundation/scss'
-    //]
   }
 
   return ENV;

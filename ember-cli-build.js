@@ -1,9 +1,22 @@
 /* global require, module */
 var EmberApp = require('ember-cli/lib/broccoli/ember-app');
+var mergeTrees = require('broccoli-merge-trees');
 
 module.exports = function(defaults) {
   var app = new EmberApp(defaults, {
     // Add options here
+    modals: {
+      layout    : true,
+      style     : true,
+      animation : 'slide-up'
+    },
+    emberCliFontAwesome: {
+      includeFontAwesomeAssets: true
+    },
+    minifyCSS: {
+      enabled: true,
+      options: {}
+    },
   });
 
   // Use `app.import` to add additional libraries to the generated
@@ -18,6 +31,11 @@ module.exports = function(defaults) {
   // modules that you would like to import into your application
   // please specify an object with the list of modules as keys
   // along with the exports of each module as its value.
+  app.import("bower_components/typeahead.js/dist/bloodhound.min.js");
+  app.import("bower_components/typeahead.js/dist/typeahead.bundle.min.js");
+  app.import("bower_components/typeahead-addresspicker/dist/typeahead-addresspicker.min.js");
 
-  return app.toTree();
+  return mergeTrees([app.toTree()], { overwrite: true });
+
+  //return app.toTree();
 };
