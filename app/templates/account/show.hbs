@@ -29,7 +29,7 @@
             <a {{action 'modalFor' 'account/update/url'}}>{{fa-icon 'edit'}}</a>
           {{/if}}
           <div class="url">
-            <a {{bind-attr href=model.account.url}}>
+            <a href={{model.account.url}}>
               {{model.account.url}}
             </a>
           </div>
@@ -72,7 +72,7 @@
               <ul class="affiliations">
                 {{#each model.account.affiliations as |affiliation|}}
                   <li>
-                    <a {{bind-attr href=affiliaton.link}}>
+                    <a href={{affiliaton.link}}>
                       {{affiliation.affiliation}}
                     </a>
                   </li>
