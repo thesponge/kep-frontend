@@ -24,7 +24,7 @@
     "broccoli-merge-trees": "^0.2.1",
     "broccoli-sass": "git://github.com/ef4/broccoli-sass",
     "broccoli-unwatched-tree": "^0.1.1",
-    "ember-cli": "1.13.5",
+    "ember-cli": "^1.13.6",
     "ember-cli-app-version": "0.4.0",
     "ember-cli-babel": "^5.0.0",
     "ember-cli-content-security-policy": "0.4.0",
