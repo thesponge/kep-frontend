@@ -6,11 +6,11 @@ export default Ember.Controller.extend({
   //}.property(),
   newAssignment: null,
   rewards_select: function() {
-    return this.store.find('assignment-reward');
+    return this.store.findAll('assignment-reward');
   }.property(),
   skills_select: function() {
     var output = [];
-    this.store.fetchAll('skill').then(function(records){
+    this.store.findAll('skill').then(function(records){
       records.forEach(function(item){
 
         var filter = output.filter(function(obj) {
@@ -18,7 +18,7 @@ export default Ember.Controller.extend({
             });
 
         if (filter.length === 0) {
-          output.push({ 
+          output.push({
             text: item.get('category'),
             children:[
               {

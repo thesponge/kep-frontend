@@ -4,7 +4,7 @@ export default Ember.Controller.extend({
   newResource: null,
   intentions_select: function() {
     var output = [];
-    this.store.fetchAll('intention').then(function(records){
+    this.store.findAll('intention').then(function(records){
       records.forEach(function(item){
         output.push({id: item.get('id'), text: item.get('intention')});
       });

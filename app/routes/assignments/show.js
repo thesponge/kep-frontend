@@ -15,7 +15,7 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
         var resourcesController = this.controllerFor('resources.show');
         console.log('step 2');
         resourcesController.set('model',
-                 this.store.find('resource', params.queryParams.match)
+                 this.store.findAll('resource', params.queryParams.match)
                 );
     }
   },
@@ -25,7 +25,7 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
     ////this.store.find('score-account-assignment', {assignment_id: '8'}).then(function(items){
     //  console.log('Found some matches!');
     //});
-    this.store.find('resource').then(function(items){
+    this.store.findAll('resource').then(function(items){
       //console.log('first resource: ', items.get('firstObject'));
       if (typeof items.get('firstObject') !== 'undefined') {
         controller.set('firstResourceId', items.get('firstObject').id);
@@ -126,7 +126,7 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
       resourcesController.set('match', match);
       resourcesController.set('matchBase', true);
       resourcesController.set('model',
-               this.store.find('resource', match)
+               this.store.findAll('resource', match)
               );
 
       this.render('resources/show', {

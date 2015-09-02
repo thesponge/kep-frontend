@@ -14,15 +14,15 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
       console.log('bM params: ', params.queryParams.match);
         var assignmentsController = this.controllerFor('assignments.show');
         console.log('step 2');
-        assignmentsController.set('model', 
-                 this.store.find('assignment', params.queryParams.match)
+        assignmentsController.set('model',
+                 this.store.findAll('assignment', params.queryParams.match)
                 );
     }
   },
   afterModel: function() {
   },
   setupController: function(controller, model){
-    this.store.find('assignment').then(function(items){
+    this.store.findAll('assignment').then(function(items){
       //console.log('first resource: ', items.get('firstObject'));
       if (typeof items.get('firstObject') !== 'undefined') {
         controller.set('firstAssignmentId', items.get('firstObject').id);
@@ -91,8 +91,8 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
       console.log('rT params: ', match);
       assignmentsController.set('match', match);
       assignmentsController.set('matchBase', true);
-      assignmentsController.set('model', 
-               this.store.find('assignment', match)
+      assignmentsController.set('model',
+               this.store.findAll('assignment', match)
               );
 
       this.render('assignments/show', {

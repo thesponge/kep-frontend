@@ -59,32 +59,67 @@ DS.Model.reopen({
     return this._changedRelations = [];
   }),
   hasKeyChanged: function(key) {
-    return [].pushObjects(this._changedRelations).pushObjects(Ember.keys(this.changedAttributes())).pushObjects(Ember.keys(this._inFlightAttributes)).uniq().contains(key);
+    return [].pushObjects(this._changedRelations).pushObjects(Object.keys(this.changedAttributes())).pushObjects(Object.keys(this._inFlightAttributes)).uniq().contains(key);
   }
 });
 
 DS.ActiveModelSerializer.reopen({
-  serializeAttribute: function(snapshot, json, key) {
-    if (snapshot.record.hasKeyChanged(key)) {
-      return this._super.apply(this, arguments);
+  //serializeAttribute: function(snapshot, json, key) {
+  //  if (snapshot.record.hasKeyChanged(key)) {
+  //    return this._super.apply(this, arguments);
+  //  }
+  //},
+  serializeAttribute: function(snapshot, json, key, attributes) {
+    if ( snapshot.changedAttributes()[key] || snapshot.record.get('isNew'))  {
+      return this._super(snapshot, json, key, attributes);
+
+      Object.keys(json).forEach((k) => {
+        if (json[k] === null) {
+          json[k] = undefined;
+        }
+      });
+    } else {
+      return;
     }
   },
-  serializeHasMany: function(snapshot, json, relationship) {
+  serializeHasMany: function(snapshot, json, relationship, attributes) {
     var key = relationship.key;
-    //console.log('relationship: ', relationship);
-    //console.log('key: ', key);
-    if (snapshot.record.hasKeyChanged(key)) {
-      //alert('Serializer in action!');
-      return this._super.apply(this, arguments);
+    ////console.log('relationship: ', relationship);
+    ////console.log('key: ', key);
+    //if (snapshot.record.hasKeyChanged(key)) {
+    //  //alert('Serializer in action!');
+    //  return this._super.apply(this, arguments);
+    //}
+    if ( snapshot.changedAttributes()[key] || snapshot.record.get('isNew'))  {
+      return this._super(snapshot, json, key, attributes);
+
+      Object.keys(json).forEach((k) => {
+        if (json[k] === null) {
+          json[k] = undefined;
+        }
+      });
+    } else {
+      return;
     }
   },
-  serializeBelongsTo: function(snapshot, json, relationship) {
+  serializeBelongsTo: function(snapshot, json, relationship, attributes) {
     var key = relationship.key;
-    //alert('Serializer in action!');
-    //console.log('relationship: ', relationship);
-    //console.log('key: ', key);
-    if (snapshot.record.hasKeyChanged(key)) {
-      return this._super.apply(this, arguments);
+    ////alert('Serializer in action!');
+    ////console.log('relationship: ', relationship);
+    ////console.log('key: ', key);
+    //if (snapshot.record.hasKeyChanged(key)) {
+    //  return this._super.apply(this, arguments);
+    //}
+    if ( snapshot.changedAttributes()[key] || snapshot.record.get('isNew'))  {
+      return this._super(snapshot, json, key, attributes);
+
+      Object.keys(json).forEach((k) => {
+        if (json[k] === null) {
+          json[k] = undefined;
+        }
+      });
+    } else {
+      return;
     }
   }
 });

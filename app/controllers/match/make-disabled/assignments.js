@@ -29,7 +29,7 @@ export default Ember.Controller.extend({
   //  }
   //},
   model: function() {
-    return this.store.find('assignment');
+    return this.store.findAll('assignment');
   }.property(),
   //setupController: function(controller, model) {
   //  model.reload();

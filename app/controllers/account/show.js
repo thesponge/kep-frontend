@@ -13,7 +13,7 @@ export default Ember.Controller.extend({
     });
   },
   model: function(params){
-    return this.store.find('account', params);
+    return this.store.findAll('account', params);
   }.property(),
   newIntention: null,
 
@@ -168,19 +168,19 @@ export default Ember.Controller.extend({
   },
 
   intentions_select: function() {
-    var data = this.store.find('intention');
+    var data = this.store.findAll('intention');
     return data;
   }.property(),
 
   affiliations_select: function() {
-    return this.store.find('affiliation');
+    return this.store.findAll('affiliation');
   }.property(),
   languages_select: function() {
-    return this.store.find('language');
+    return this.store.findAll('language');
   }.property(),
   skills_select: function() {
     var output = [];
-    this.store.fetchAll('skill').then(function(records){
+    this.store.findAll('skill').then(function(records){
       records.forEach(function(item){
 
         var filter = output.filter(function(obj) {

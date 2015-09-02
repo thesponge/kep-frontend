@@ -2,11 +2,11 @@ import Ember from 'ember';
 
 export default Ember.Controller.extend({
   rewards_select: function() {
-    return this.store.find('resource-reward');
+    return this.store.findAll('resource-reward');
   }.property(),
   intentions_select: function() {
     var output = [];
-    this.store.fetchAll('intention').then(function(records){
+    this.store.findAll('intention').then(function(records){
       records.forEach(function(item){
         output.push({id: item.get('id'), text: item.get('intention')});
       });

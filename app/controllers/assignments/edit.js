@@ -6,7 +6,7 @@ export default Ember.Controller.extend({
   //}.property(),
   rewards_select: function() {
     var output = [];
-    this.store.find('assignment-reward').then(function(records){
+    this.store.findAll('assignment-reward').then(function(records){
       records.forEach(function(item){
         output.push({id: item.get('id'), text: item.get('reward')});
       });
@@ -15,7 +15,7 @@ export default Ember.Controller.extend({
   }.property(),
   skills_select: function() {
     var output = [];
-    this.store.fetchAll('skill').then(function(records){
+    this.store.findAll('skill').then(function(records){
       records.forEach(function(item){
 
         var filter = output.filter(function(obj) {
@@ -23,7 +23,7 @@ export default Ember.Controller.extend({
             });
 
         if (filter.length === 0) {
-          output.push({ 
+          output.push({
             text: item.get('category'),
             children:[
               {
@@ -86,17 +86,14 @@ export default Ember.Controller.extend({
       console.log("Description: ", this.get('assignment.description'));
       this.set('assignment.description', this.get('assignment.description'));
 
+      console.log("selected_skills_output: ", selected_skills_output);
       if(compare(selected_skills_output, this.get('assignment.initial_skills')) === false) {
         this.set('assignment.skill_ids', selected_skills_output);
       }
+      console.log("selected_rewards_output: ", selected_rewards_output);
       if(compare(selected_rewards_output, this.get('assignment.initial_rewards')) === false) {
         this.set('assignment.assignment_reward_ids', selected_rewards_output);
       }
-
-      //console.log("Travel: ", this.get('assignment.travel'));
-      //this.set('assignment.travel');
-      //console.log("Driving license: ", this.get('assignment.driver_license'));
-      //this.set('assignment.driver_license');
 
       var self = this;
       self.get('assignment').save().then(function() {
