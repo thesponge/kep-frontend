@@ -73,11 +73,11 @@ DS.ActiveModelSerializer.reopen({
     if ( snapshot.changedAttributes()[key] || snapshot.record.get('isNew'))  {
       return this._super(snapshot, json, key, attributes);
 
-      Object.keys(json).forEach((k) => {
-        if (json[k] === null) {
-          json[k] = undefined;
-        }
-      });
+      //Object.keys(json).forEach((k) => {
+      //  if (json[k] === null) {
+      //    json[k] = undefined;
+      //  }
+      //});
     } else {
       return;
     }
@@ -93,11 +93,11 @@ DS.ActiveModelSerializer.reopen({
     if ( snapshot.changedAttributes()[key] || snapshot.record.get('isNew'))  {
       return this._super(snapshot, json, key, attributes);
 
-      Object.keys(json).forEach((k) => {
-        if (json[k] === null) {
-          json[k] = undefined;
-        }
-      });
+      //Object.keys(json).forEach((k) => {
+      //  if (json[k] === null) {
+      //    json[k] = undefined;
+      //  }
+      //});
     } else {
       return;
     }
@@ -113,11 +113,11 @@ DS.ActiveModelSerializer.reopen({
     if ( snapshot.changedAttributes()[key] || snapshot.record.get('isNew'))  {
       return this._super(snapshot, json, key, attributes);
 
-      Object.keys(json).forEach((k) => {
-        if (json[k] === null) {
-          json[k] = undefined;
-        }
-      });
+      //Object.keys(json).forEach((k) => {
+      //  if (json[k] === null) {
+      //    json[k] = undefined;
+      //  }
+      //});
     } else {
       return;
     }

@@ -45,8 +45,7 @@ export default Ember.Controller.extend({
     submitAssignment: function() {
       console.log("Title: ", this.get('newAssignment.title'));
       console.log("Description: ", this.get('newAssignment.description'));
-      console.log("Travel: ", this.get('newAssignment.travel'));
-      console.log("Driving license: ", this.get('newAssignment.driver_license'));
+      console.log("newAssignment", this.get('newAssignment'));
       var self = this;
       self.get('newAssignment').save().then(function() {
         //this.get('assignments').pushObject(self.get('assignment'));
