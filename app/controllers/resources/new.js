@@ -2,7 +2,7 @@ import Ember from 'ember';
 
 export default Ember.Controller.extend({
   newResource: null,
-  intentions_select: function() {
+  intentions_select: Ember.computed(function() {
     var output = [];
     this.store.findAll('intention').then(function(records){
       records.forEach(function(item){
@@ -11,7 +11,7 @@ export default Ember.Controller.extend({
     });
 
     return output;
-  }.property(),
+  }),
   actions: {
     submitResource: function() {
       console.log("Title: ", this.get('newResource.title'));

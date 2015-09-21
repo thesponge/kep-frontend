@@ -4,7 +4,7 @@ export default Ember.Controller.extend({
   //assignment: function() {
   //  return this.store.find('assignment', 66);
   //}.property(),
-  rewards_select: function() {
+  rewards_select: Ember.computed(function() {
     var output = [];
     this.store.findAll('assignment-reward').then(function(records){
       records.forEach(function(item){
@@ -12,8 +12,8 @@ export default Ember.Controller.extend({
       });
     });
     return output;
-  }.property(),
-  skills_select: function() {
+  }),
+  skills_select: Ember.computed(function() {
     var output = [];
     this.store.findAll('skill').then(function(records){
       records.forEach(function(item){
@@ -45,7 +45,7 @@ export default Ember.Controller.extend({
     });
 
     return output;
-  }.property(),
+  }),
   actions: {
     updateAssignment: function() {
       var compare = function(first, second) {

@@ -23,9 +23,9 @@ export default Ember.Controller.extend({
   //    });
   //  }
   //}
-  model: function() {
+  model: Ember.computed(function() {
     return this.store.findAll('assignment');
-  }.property(),
+  }),
   //owner: function() {
   //  return this.store.find('accounts', 1);
   //}.property(),

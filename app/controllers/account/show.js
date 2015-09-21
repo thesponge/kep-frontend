@@ -12,9 +12,9 @@ export default Ember.Controller.extend({
       autoClear: true
     });
   },
-  model: function(params){
+  model: Ember.computed(function(params){
     return this.store.findAll('account', params);
-  }.property(),
+  }),
   newIntention: null,
 
   updateAttribute: function(property) {
@@ -167,18 +167,18 @@ export default Ember.Controller.extend({
     modal.show();
   },
 
-  intentions_select: function() {
+  intentions_select: Ember.computed(function() {
     var data = this.store.findAll('intention');
     return data;
-  }.property(),
+  }),
 
-  affiliations_select: function() {
+  affiliations_select: Ember.computed(function() {
     return this.store.findAll('affiliation');
-  }.property(),
-  languages_select: function() {
+  }),
+  languages_select: Ember.computed(function() {
     return this.store.findAll('language');
-  }.property(),
-  skills_select: function() {
+  }),
+  skills_select: Ember.computed(function() {
     var output = [];
     this.store.findAll('skill').then(function(records){
       records.forEach(function(item){
@@ -210,5 +210,5 @@ export default Ember.Controller.extend({
     });
 
     return output;
-  }.property(),
+  }),
 });

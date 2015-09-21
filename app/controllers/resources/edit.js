@@ -1,10 +1,10 @@
 import Ember from 'ember';
 
 export default Ember.Controller.extend({
-  rewards_select: function() {
+  rewards_select: Ember.computed(function() {
     return this.store.findAll('resource-reward');
-  }.property(),
-  intentions_select: function() {
+  }),
+  intentions_select: Ember.computed(function() {
     var output = [];
     this.store.findAll('intention').then(function(records){
       records.forEach(function(item){
@@ -13,7 +13,7 @@ export default Ember.Controller.extend({
     });
 
     return output;
-  }.property(),
+  }),
   actions: {
     updateResource: function() {
       var selected_intentions = this.get('resource.intentions_select2');

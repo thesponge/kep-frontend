@@ -5,9 +5,9 @@ import Ember from 'ember';
 //});
 
 export default Ember.Controller.extend({
-  user: function() {
+  user: Ember.computed(function() {
     return this.store.createRecord('user');
-  }.property(),
+  }),
   actions: {
     register: function() {
       //console.log('Accessing the register action');

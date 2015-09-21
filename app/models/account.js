@@ -1,3 +1,4 @@
+import Ember from 'ember';
 import DS from 'ember-data';
 
 var Account = DS.Model.extend({
@@ -19,18 +20,18 @@ var Account = DS.Model.extend({
   skill_ids       : DS.attr(),
   intention_ids   : DS.attr(),
   affiliation_ids : DS.attr(),
-  user            : DS.belongsTo ('user'),
-  is_owner: function(){
+  user            : DS.belongsTo('user'),
+  is_owner: Ember.computed(function(){
     var session = this.container.lookup('simple-auth-session:main');
     return this.get('id').toString() === session.content.id.toString();
-  }.property(),
-  computed_display_name : function(){
+  }),
+  computed_display_name : Ember.computed(function(){
     if (this.get('display_name')) {
       return this.get('display_name');
     } else {
       return this.get('user.email').replace(/@.*$/g, '');
     }
-  }.property()
+  })
 });
 
 //Account.reopenClass({

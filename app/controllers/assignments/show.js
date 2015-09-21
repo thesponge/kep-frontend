@@ -23,7 +23,7 @@ export default Ember.Controller.extend({
     addBid: function() {
       var self = this;
 
-      var bid = this.store.createRecord('assignmentBid', {
+      var bid = this.store.createRecord('assignment-bid', {
         assignment_id: this.get('model.id'),
         chosen: false
       });

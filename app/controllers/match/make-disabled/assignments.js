@@ -28,9 +28,9 @@ export default Ember.Controller.extend({
   //    refreshModel: true
   //  }
   //},
-  model: function() {
+  model: Ember.computed(function() {
     return this.store.findAll('assignment');
-  }.property(),
+  }),
   //setupController: function(controller, model) {
   //  model.reload();
   //  controller.set('model', model);

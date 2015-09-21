@@ -25,7 +25,7 @@ export default Ember.View.extend({
       });
     });
   },
-  matchesChanged: function() {
+  matchesChanged: Ember.observer('matches', function() {
     this.rerender();
-  }.observes('matches')
+  })
 });

@@ -37,12 +37,16 @@ Router.map(function() {
     //});
     this.route('notifications');
     this.route('dashboard', function() {
-      this.resource('resources', function() {
+      this.route('resources', {
+        resetNamespace: true
+      }, function() {
         this.route('show', {path: ':resource_id'});
         this.route('edit', {path: ':resource_id/edit'});
         this.route('new', {path: 'new'});
       });
-      this.resource('assignments', function() {
+      this.route('assignments', {
+        resetNamespace: true
+      }, function() {
         this.route('show', {path: ':assignment_id'}, function(){
           this.route('automatches');
         });
@@ -60,9 +64,14 @@ Router.map(function() {
     this.route('reset');
     this.route('destroy');
   });
-  this.resource('users', function() {
+  this.route('users', {
+    resetNamespace: true
+  }, function() {
     this.route('show', {path: ':user_id'}, function(){
-      this.resource('account', {path: '/profile'}, function(){
+      this.route('account', {
+        path: '/profile',
+        resetNamespace: true
+      }, function(){
         this.route('show', {path: '/'});
       });
     });

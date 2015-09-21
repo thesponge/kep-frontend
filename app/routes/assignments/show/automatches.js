@@ -5,7 +5,7 @@ export default Ember.Route.extend({
   host          : ENV.APP.apiHost,
   namespace     : ENV.APP.apiNamespace,
   assignment_id : null,
-  matches       : function() { return []; }.property(),
+  matches       : Ember.computed(function() { return []; }),
   activate: function() {
   },
   model: function(params, transition) {
