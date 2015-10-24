@@ -12,6 +12,20 @@
   {{textarea id='description' placeholder='Description' value=assignment.description}}
   <div class="row">
     <div class="small-12 columns">
+      <label>Assignment language(s)</label>
+      {{select-2
+          content=languages_select
+          value=assignment.languages_select2
+          multiple=true
+          placeholder="What languages are necessary for the assignment?"
+      }}
+    </div>
+    <div class="small-12 columns">
+      <label for="location">Assignment location(s)</label>
+      {{input id='location' placeholder='Enter your location'
+          value=assignment.location}}
+    </div>
+    <div class="small-12 columns">
       <label>Assignment type(s)</label>
       {{select-2
           content=skills_select
@@ -66,4 +80,7 @@
       return false;
     }
   });
+</script>
+<script type="text/javascript">
+    $('#location').jeoCityAutoComplete();
 </script>

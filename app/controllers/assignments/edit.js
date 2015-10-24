@@ -4,6 +4,15 @@ export default Ember.Controller.extend({
   //assignment: function() {
   //  return this.store.find('assignment', 66);
   //}.property(),
+  languages_select: Ember.computed(function() {
+    var output = [];
+    this.store.findAll('language').then(function(records){
+      records.forEach(function(item){
+        output.push({id: item.get('id'), text: item.get('common')});
+      });
+    });
+    return output;
+  }),
   rewards_select: Ember.computed(function() {
     var output = [];
     this.store.findAll('assignment-reward').then(function(records){
@@ -77,6 +86,12 @@ export default Ember.Controller.extend({
         selected_rewards_output.push(item.id);
       });
 
+      var selected_languages = this.get('assignment.languages_select2');
+      var selected_languages_output = [];
+      selected_languages.forEach(function(item){
+        selected_languages_output.push(item.id);
+      });
+
       console.log('compare skills: ', compare(selected_skills_output, this.get('assignment.initial_skills')));
       console.log('compare rewards: ', compare(selected_rewards_output, this.get('assignment.initial_rewards')));
       console.log('this', this.get('assignment.initial_rewards'));
@@ -93,6 +108,14 @@ export default Ember.Controller.extend({
       console.log("selected_rewards_output: ", selected_rewards_output);
       if(compare(selected_rewards_output, this.get('assignment.initial_rewards')) === false) {
         this.set('assignment.assignment_reward_ids', selected_rewards_output);
+      }
+      console.log("selected_languages_output: ", selected_languages_output);
+      if(compare(selected_languages_output, this.get('assignment.initial_languages')) === false) {
+        this.set('assignment.language_ids', selected_languages_output);
+      }
+      console.log("selected_locations_output: ", this.get('assignment.location'));
+      if(compare(this.get('assignment.location'), this.get('assignment.initial_locations')) === false) {
+        this.set('assignment.location_ids', this.get('assignment.location'));
       }
 
       var self = this;

@@ -76,6 +76,7 @@ Router.map(function() {
       });
     });
   });
+  this.route('search');
 });
 
 export default Router;

@@ -73,6 +73,7 @@
           {{else}}
             <li class="choice-from-dropdown"><a href="#" {{action 'addBid'}}>Take assignment</a></li>
           {{/if}}
+            <li class="choice-from-dropdown"><a href="#" {{action 'editAssignment'}}>Share</a></li>
 
         </ul>
       </div>
@@ -80,7 +81,23 @@
     {{#if match}}
       <p></p>
     {{else}}
-      <p>{{model.description}}</p>
+    <p>{{{model.formatted_description}}}</p>
+    <p>
+      {{#if model.locations}}
+        {{#each model.locations as |location|}}
+          <span class="label secondary radius">
+            {{location.city}}, {{location.state}}, {{location.country}}
+          </span>
+        {{/each}}
+      {{/if}}
+    </p>
+    <p>
+      {{#if model.languages}}
+        {{#each model.languages as |language|}}
+          <span class="label secondary radius">{{language.common}}</span>
+        {{/each}}
+      {{/if}}
+    </p>
     {{/if}}
 
     <ul class="small-block-grid-2 details-list">

@@ -20,7 +20,7 @@
             <a {{action 'modalFor' 'account/update/bio'}}>{{fa-icon 'edit'}}</a>
           {{/if}}
           <div class="bio">
-            {{model.account.bio}}
+            {{{model.account.formattedBio}}}
           </div>
         </div>
         <div class="url-container">

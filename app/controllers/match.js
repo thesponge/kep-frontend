@@ -30,6 +30,9 @@ export default Ember.Controller.extend({
     makeMatch: function(){
       alert('Accessed the Match Maker');
     },
+    executeSearch: function() {
+      this.transitionTo('search');
+    },
     //sendMatch: function() {
     //  var self = this;
     //  self.get('newMatch').save().then(function(){

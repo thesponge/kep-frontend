@@ -14,9 +14,10 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
       console.log('bM params: ', params.queryParams.match);
         var resourcesController = this.controllerFor('resources.show');
         console.log('step 2');
-        resourcesController.set('model',
-                 this.store.findAll('resource', params.queryParams.match)
-                );
+        resourcesController.set(
+          'model',
+          this.store.findAll('resource', params.queryParams.match)
+        );
     }
   },
   setupController: function(controller, model){

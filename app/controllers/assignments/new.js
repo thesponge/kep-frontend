@@ -5,6 +5,9 @@ export default Ember.Controller.extend({
   //  return this.store.createRecord('assignment');
   //}.property(),
   newAssignment: null,
+  languages_select: Ember.computed(function() {
+    return this.store.findAll('language');
+  }),
   rewards_select: Ember.computed(function() {
     return this.store.findAll('assignment-reward');
   }),
